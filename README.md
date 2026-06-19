@@ -78,3 +78,18 @@ The initial runtime foundation provides:
 The first migrated operation is FP32 SAXPY. It is available through the public
 `TensionForgeRuntime` and `tensionforge.ops` APIs rather than embedding a full
 runtime inside the experiment.
+
+## Reusable tiled matrix multiplication
+
+The verified tiled FP32 matrix multiplication kernel has been migrated into
+the public TensionForge runtime.
+
+The operation now provides:
+
+- arbitrary two-dimensional matrix shapes;
+- padded work-group dispatch for non-multiple dimensions;
+- reusable OpenCL program and kernel caching;
+- device work-group validation;
+- profiling and calculated GFLOPS;
+- NumPy parity tests;
+- deterministic benchmark receipts.
