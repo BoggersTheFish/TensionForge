@@ -4,6 +4,10 @@ from .activations import (
     tanh_device,
 )
 from .elementwise import SAXPY_SOURCE, saxpy
+from .fused_tension import (
+    FUSED_TENSION_LINEAR_SOURCE,
+    fused_tension_linear_device,
+)
 from .linear import LINEAR_SOURCE, linear
 from .linear_device import linear_device
 from .matmul import MATMUL_SOURCE, matmul
@@ -14,10 +18,12 @@ from .tension import (
 
 __all__ = [
     "ACTIVATION_SOURCE",
+    "FUSED_TENSION_LINEAR_SOURCE",
     "LINEAR_SOURCE",
     "MATMUL_SOURCE",
     "SAXPY_SOURCE",
     "TENSION_UPDATE_SOURCE",
+    "fused_tension_linear_device",
     "linear",
     "linear_device",
     "matmul",

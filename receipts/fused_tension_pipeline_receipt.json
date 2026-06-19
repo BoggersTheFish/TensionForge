@@ -1,0 +1,174 @@
+{
+  "all_verified": true,
+  "comparison": {
+    "fused_vs_unfused_max_error": 0.0,
+    "kernel_speedup": 1.043989114775092,
+    "launches_after": 1,
+    "launches_before": 5
+  },
+  "configuration": {
+    "batch_size": 1024,
+    "feature_count": 1024,
+    "hidden_size": 512,
+    "precision": "float32",
+    "repetitions": 30
+  },
+  "created_at_utc": "2026-06-19T14:56:16.654745+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "fused": {
+    "approximate_linear_gflops": 859.4059740675524,
+    "compile_options": [
+      "-DTILE_SIZE=16"
+    ],
+    "feature_shape": [
+      1024,
+      1024
+    ],
+    "host_transfers_during_repetitions": 0,
+    "kernel_launches_per_iteration": 1,
+    "logical_operations_fused": [
+      "proposal_linear",
+      "proposal_tanh",
+      "gate_linear",
+      "gate_sigmoid",
+      "tension_update"
+    ],
+    "maximum_absolute_error": 2.384185791015625e-06,
+    "median_kernel_ms": 2.4988,
+    "operation": "fused_tension_linear_device_fp32",
+    "output_buffer_reused": true,
+    "output_shape": [
+      1024,
+      512
+    ],
+    "repetitions": 30,
+    "source_sha256": "df8cc3ebd8923853117079d03fbe23bc1376abcd3dc92679522995dc2b5ad585",
+    "state_shape": [
+      1024,
+      512
+    ],
+    "tile_size": 16,
+    "unfused_launches_per_iteration": 5,
+    "verified": true
+  },
+  "milestone": "fused_tension_linear_pipeline",
+  "runtime": {
+    "kernel_cache_entries": 5,
+    "program_cache_entries": 4
+  },
+  "schema": "tensionforge.receipt.v1",
+  "unfused": {
+    "combined_median_kernel_ms": 2.60872,
+    "gate_activation": {
+      "approximate_bandwidth_gbps": 172.46315789473684,
+      "element_count": 524288,
+      "host_transfers_during_repetitions": 0,
+      "median_kernel_ms": 0.024319999999999998,
+      "operation": "sigmoid_device_fp32",
+      "output_buffer_reused": true,
+      "repetitions": 30,
+      "shape": [
+        1024,
+        512
+      ],
+      "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+    },
+    "gate_linear": {
+      "bias_shape": [
+        512
+      ],
+      "compile_options": [
+        "-DTILE_SIZE=16"
+      ],
+      "gflops": 948.462099166549,
+      "host_transfers_during_repetitions": 0,
+      "input_shape": [
+        1024,
+        1024
+      ],
+      "median_kernel_ms": 1.1326399999999999,
+      "operation": "linear_forward_device_fp32",
+      "output_buffer_reused": true,
+      "output_shape": [
+        1024,
+        512
+      ],
+      "repetitions": 30,
+      "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+      "tile_size": 16,
+      "weight_shape": [
+        1024,
+        512
+      ]
+    },
+    "maximum_absolute_error": 2.384185791015625e-06,
+    "proposal_activation": {
+      "approximate_bandwidth_gbps": 163.84,
+      "element_count": 524288,
+      "host_transfers_during_repetitions": 0,
+      "median_kernel_ms": 0.025599999999999998,
+      "operation": "tanh_device_fp32",
+      "output_buffer_reused": true,
+      "repetitions": 30,
+      "shape": [
+        1024,
+        512
+      ],
+      "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+    },
+    "proposal_linear": {
+      "bias_shape": [
+        512
+      ],
+      "compile_options": [
+        "-DTILE_SIZE=16"
+      ],
+      "gflops": 947.8595609515071,
+      "host_transfers_during_repetitions": 0,
+      "input_shape": [
+        1024,
+        1024
+      ],
+      "median_kernel_ms": 1.13336,
+      "operation": "linear_forward_device_fp32",
+      "output_buffer_reused": true,
+      "output_shape": [
+        1024,
+        512
+      ],
+      "repetitions": 30,
+      "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+      "tile_size": 16,
+      "weight_shape": [
+        1024,
+        512
+      ]
+    },
+    "tension_update": {
+      "approximate_bandwidth_gbps": 28.649617486338794,
+      "element_count": 524288,
+      "host_transfers_during_repetitions": 0,
+      "median_kernel_ms": 0.2928,
+      "operation": "tension_update_device_fp32",
+      "output_buffer_reused": true,
+      "repetitions": 30,
+      "shape": [
+        1024,
+        512
+      ],
+      "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+    },
+    "verified": true
+  }
+}

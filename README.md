@@ -134,3 +134,22 @@ The update computes:
 Inputs and reusable outputs remain in GPU memory across repeated kernel
 launches. NumPy references verify every operation, while receipts record
 timings, approximate memory bandwidth, source hashes, and numerical errors.
+
+## Fused tension pipeline
+
+TensionForge includes a fused device-resident tension layer.
+
+The kernel performs five logical operations in one launch:
+
+    proposal = tanh(features @ proposal_weights + proposal_bias)
+    gate = sigmoid(features @ gate_weights + gate_bias)
+    next_state = state + gate * (proposal - state)
+
+The unfused version requires two linear launches, two activation launches, and
+one tension-update launch. The fused implementation reduces this from five
+kernel launches to one while keeping features, weights, state, and output in
+GPU memory.
+
+NumPy and unfused-runtime references verify the fused output. Benchmark
+receipts record numerical error, kernel timings, launch reduction, throughput,
+and measured speedup.
