@@ -1,0 +1,74 @@
+{
+  "all_verified": true,
+  "configuration": {
+    "element_count": 8388608,
+    "precision": "float32",
+    "repetitions": 20
+  },
+  "created_at_utc": "2026-06-19T14:52:45.925985+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "milestone": "device_resident_tension_operations",
+  "operations": {
+    "sigmoid": {
+      "approximate_bandwidth_gbps": 189.27364620938627,
+      "element_count": 8388608,
+      "host_transfers_during_repetitions": 0,
+      "maximum_absolute_error": 1.7881393432617188e-07,
+      "median_kernel_ms": 0.35456,
+      "operation": "sigmoid_device_fp32",
+      "output_buffer_reused": true,
+      "repetitions": 20,
+      "shape": [
+        8388608
+      ],
+      "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab",
+      "verified": true
+    },
+    "tanh": {
+      "approximate_bandwidth_gbps": 189.8304593799502,
+      "element_count": 8388608,
+      "host_transfers_during_repetitions": 0,
+      "maximum_absolute_error": 1.1920928955078125e-07,
+      "median_kernel_ms": 0.35351999999999995,
+      "operation": "tanh_device_fp32",
+      "output_buffer_reused": true,
+      "repetitions": 20,
+      "shape": [
+        8388608
+      ],
+      "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab",
+      "verified": true
+    },
+    "tension_update": {
+      "approximate_bandwidth_gbps": 195.22010705143126,
+      "element_count": 8388608,
+      "host_transfers_during_repetitions": 0,
+      "maximum_absolute_error": 0.0,
+      "median_kernel_ms": 0.6875199999999999,
+      "operation": "tension_update_device_fp32",
+      "output_buffer_reused": true,
+      "repetitions": 20,
+      "shape": [
+        8388608
+      ],
+      "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2",
+      "verified": true
+    }
+  },
+  "runtime": {
+    "kernel_cache_entries": 3,
+    "program_cache_entries": 2
+  },
+  "schema": "tensionforge.receipt.v1"
+}

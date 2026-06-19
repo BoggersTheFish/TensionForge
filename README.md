@@ -120,3 +120,17 @@ external access is required.
 The device-resident linear operation accepts DeviceTensor inputs, weights,
 biases, and optional reusable output storage. Repeated execution performs no
 CPU-to-GPU or GPU-to-CPU transfers between kernel launches.
+
+## Device-resident tension operations
+
+TensionForge provides reusable device-resident FP32 tanh and sigmoid
+activations, plus the causal tension update used by tension-based recurrent
+state systems.
+
+The update computes:
+
+    next_state = state + gate * (proposal - state)
+
+Inputs and reusable outputs remain in GPU memory across repeated kernel
+launches. NumPy references verify every operation, while receipts record
+timings, approximate memory bandwidth, source hashes, and numerical errors.
