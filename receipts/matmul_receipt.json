@@ -1,0 +1,54 @@
+{
+  "benchmark": "rx480_verified_fp32_matmul",
+  "platform": "rusticl",
+  "device": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+  "driver": "25.2.8-0ubuntu0.24.04.2",
+  "tile_size": 16,
+  "results": [
+    {
+      "size": 128,
+      "gpu_median_ms": 0.01552,
+      "gpu_gflops": 270.2515463917526,
+      "cpu_ms": 7.304188000034628,
+      "cpu_gflops": 0.5742327552330411,
+      "max_absolute_error": 1.430511474609375e-06,
+      "mean_absolute_error": 7.866754003771348e-08,
+      "max_relative_error": 0.0013637930387631059,
+      "accepted": true
+    },
+    {
+      "size": 256,
+      "gpu_median_ms": 0.07264000000000001,
+      "gpu_gflops": 461.9277533039647,
+      "cpu_ms": 7.426295999948707,
+      "cpu_gflops": 4.518326767507214,
+      "max_absolute_error": 2.86102294921875e-06,
+      "mean_absolute_error": 1.552194817122654e-07,
+      "max_relative_error": 0.0056936354376375675,
+      "accepted": true
+    },
+    {
+      "size": 512,
+      "gpu_median_ms": 0.29600000000000004,
+      "gpu_gflops": 906.8765405405404,
+      "cpu_ms": 6.707474999984697,
+      "cpu_gflops": 40.020343870176546,
+      "max_absolute_error": 7.62939453125e-06,
+      "mean_absolute_error": 4.069743226864375e-07,
+      "max_relative_error": 0.06239861249923706,
+      "accepted": true
+    },
+    {
+      "size": 1024,
+      "gpu_median_ms": 2.3315200000000003,
+      "gpu_gflops": 921.0659346692287,
+      "cpu_ms": 23.436433999904693,
+      "cpu_gflops": 91.63013656466393,
+      "max_absolute_error": 1.621246337890625e-05,
+      "mean_absolute_error": 8.431281912635313e-07,
+      "max_relative_error": 0.06088082864880562,
+      "accepted": true
+    }
+  ],
+  "all_accepted": true
+}

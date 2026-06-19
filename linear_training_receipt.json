@@ -1,0 +1,28 @@
+{
+  "milestone": "verified_gpu_linear_training",
+  "device": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+  "driver": "25.2.8-0ubuntu0.24.04.2",
+  "configuration": {
+    "samples": 4096,
+    "inputs": 32,
+    "outputs": 8,
+    "learning_rate": 0.10000000149011612,
+    "training_steps": 200
+  },
+  "verification": {
+    "forward_max_error": 2.384185791015625e-07,
+    "weight_gradient_max_error": 3.6954879760742188e-06,
+    "bias_gradient_max_error": 2.9802322387695312e-08,
+    "input_gradient_max_error": 2.384185791015625e-07,
+    "all_operations_verified": true
+  },
+  "training": {
+    "initial_loss": 38.48891067504883,
+    "final_loss": 6.1922016993121165e-12,
+    "loss_reduction_factor": 6215706875201.516,
+    "training_seconds": 0.597244855000099,
+    "weight_recovery_max_error": 5.960464477539062e-07,
+    "bias_recovery_max_error": 1.1920928955078125e-07,
+    "passed": true
+  }
+}
