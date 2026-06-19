@@ -153,3 +153,18 @@ GPU memory.
 NumPy and unfused-runtime references verify the fused output. Benchmark
 receipts record numerical error, kernel timings, launch reduction, throughput,
 and measured speedup.
+
+## Device-resident linear backward
+
+TensionForge provides reusable FP32 backward propagation for linear layers.
+
+The runtime calculates:
+
+    grad_input = grad_output @ weights transpose
+    grad_weights = inputs transpose @ grad_output
+    grad_bias = sum grad_output across the batch
+
+Inputs, upstream gradients, parameter gradients, and optional reusable output
+buffers remain in GPU memory. NumPy references verify all three gradients, and
+receipts record individual kernel timings, combined throughput, source hashes,
+buffer reuse, and numerical error.

@@ -1,0 +1,79 @@
+{
+  "all_verified": true,
+  "backward": {
+    "approximate_matmul_gflops": 416.6699615050292,
+    "buffers_reused": {
+      "grad_bias": true,
+      "grad_input": true,
+      "grad_weights": true
+    },
+    "combined_median_ms": 2.5769599999999997,
+    "compile_options": [
+      "-DTILE_SIZE=16"
+    ],
+    "grad_bias_max_error": 0.0,
+    "grad_bias_median_ms": 0.6974400000000001,
+    "grad_bias_shape": [
+      512
+    ],
+    "grad_bias_verified": true,
+    "grad_input_max_error": 0.0001220703125,
+    "grad_input_median_ms": 0.96912,
+    "grad_input_shape": [
+      1024,
+      512
+    ],
+    "grad_input_verified": true,
+    "grad_output_shape": [
+      1024,
+      512
+    ],
+    "grad_weights_max_error": 0.000213623046875,
+    "grad_weights_median_ms": 0.9104,
+    "grad_weights_shape": [
+      512,
+      512
+    ],
+    "grad_weights_verified": true,
+    "host_transfers_during_repetitions": 0,
+    "input_shape": [
+      1024,
+      512
+    ],
+    "kernel_launches_per_backward": 3,
+    "operation": "linear_backward_device_fp32",
+    "repetitions": 20,
+    "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+    "tile_size": 16,
+    "weight_shape": [
+      512,
+      512
+    ]
+  },
+  "configuration": {
+    "batch_size": 1024,
+    "input_features": 512,
+    "output_features": 512,
+    "precision": "float32",
+    "repetitions": 20
+  },
+  "created_at_utc": "2026-06-19T15:01:29.684068+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "milestone": "device_resident_linear_backward",
+  "runtime": {
+    "kernel_cache_entries": 3,
+    "program_cache_entries": 1
+  },
+  "schema": "tensionforge.receipt.v1"
+}

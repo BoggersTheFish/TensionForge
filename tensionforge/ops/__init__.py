@@ -9,6 +9,10 @@ from .fused_tension import (
     fused_tension_linear_device,
 )
 from .linear import LINEAR_SOURCE, linear
+from .linear_backward import (
+    LINEAR_BACKWARD_SOURCE,
+    linear_backward_device,
+)
 from .linear_device import linear_device
 from .matmul import MATMUL_SOURCE, matmul
 from .tension import (
@@ -19,12 +23,14 @@ from .tension import (
 __all__ = [
     "ACTIVATION_SOURCE",
     "FUSED_TENSION_LINEAR_SOURCE",
+    "LINEAR_BACKWARD_SOURCE",
     "LINEAR_SOURCE",
     "MATMUL_SOURCE",
     "SAXPY_SOURCE",
     "TENSION_UPDATE_SOURCE",
     "fused_tension_linear_device",
     "linear",
+    "linear_backward_device",
     "linear_device",
     "matmul",
     "saxpy",
