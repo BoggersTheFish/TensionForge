@@ -1,0 +1,90 @@
+{
+  "all_verified": true,
+  "configuration": {
+    "batch_size": 1024,
+    "input_features": 512,
+    "output_features": 512,
+    "precision": "float32",
+    "resident_repetitions": 100
+  },
+  "created_at_utc": "2026-06-19T14:50:58.477749+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "host_wrapper_execution": {
+    "bias_shape": [
+      512
+    ],
+    "compile_options": [
+      "-DTILE_SIZE=16"
+    ],
+    "gflops": 829.1088620093805,
+    "input_shape": [
+      1024,
+      512
+    ],
+    "maximum_absolute_error": 0.0001068115234375,
+    "median_kernel_ms": 0.64816,
+    "operation": "linear_forward_fp32",
+    "output_shape": [
+      1024,
+      512
+    ],
+    "repetitions": 1,
+    "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+    "tile_size": 16,
+    "verified": true,
+    "wall_seconds": 0.006799870000577357,
+    "weight_shape": [
+      512,
+      512
+    ]
+  },
+  "milestone": "device_resident_tensor_and_linear",
+  "resident_execution": {
+    "average_wall_ms": 1.5610579700023663,
+    "bias_shape": [
+      512
+    ],
+    "compile_options": [
+      "-DTILE_SIZE=16"
+    ],
+    "gflops": 831.3663366336633,
+    "host_transfers_during_repetitions": 0,
+    "input_shape": [
+      1024,
+      512
+    ],
+    "maximum_absolute_error": 0.0001068115234375,
+    "median_kernel_ms": 0.6464,
+    "operation": "linear_forward_device_fp32",
+    "output_buffer_reused": true,
+    "output_shape": [
+      1024,
+      512
+    ],
+    "repetitions": 100,
+    "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+    "tile_size": 16,
+    "verified": true,
+    "wall_seconds": 0.15610579700023663,
+    "weight_shape": [
+      512,
+      512
+    ]
+  },
+  "runtime": {
+    "kernel_cache_entries": 1,
+    "program_cache_entries": 1
+  },
+  "schema": "tensionforge.receipt.v1"
+}

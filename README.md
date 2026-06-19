@@ -106,3 +106,17 @@ reduces kernel launches and avoids a separate bias-addition pass.
 The operation supports arbitrary batch, input-feature, and output-feature
 dimensions, with NumPy parity tests, kernel profiling, compiled-kernel caching,
 and deterministic benchmark receipts.
+
+## Device-resident tensors
+
+TensionForge now includes a DeviceTensor abstraction for persistent OpenCL
+buffers.
+
+DeviceTensor records shape, dtype, element count, byte size, runtime ownership,
+and its underlying GPU buffer. Tensors can be uploaded once, reused across many
+kernel executions, updated in place, and copied back only when verification or
+external access is required.
+
+The device-resident linear operation accepts DeviceTensor inputs, weights,
+biases, and optional reusable output storage. Repeated execution performs no
+CPU-to-GPU or GPU-to-CPU transfers between kernel launches.
