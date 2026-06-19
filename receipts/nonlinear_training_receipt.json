@@ -1,0 +1,32 @@
+{
+  "milestone": "verified_nonlinear_gpu_training",
+  "task": "learn multiplication x0_times_x1",
+  "device": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+  "driver": "25.2.8-0ubuntu0.24.04.2",
+  "configuration": {
+    "samples": 4096,
+    "inputs": 2,
+    "hidden_size": 32,
+    "outputs": 1,
+    "steps": 750,
+    "learning_rate": 0.20000000298023224
+  },
+  "verification": {
+    "hidden_forward_error": 1.1920928955078125e-07,
+    "output_forward_error": 2.384185791015625e-07,
+    "output_weight_gradient_error": 2.384185791015625e-07,
+    "output_bias_gradient_error": 1.6763806343078613e-08,
+    "hidden_gradient_error": 2.384185791015625e-07,
+    "input_weight_gradient_error": 4.3213367462158203e-07,
+    "hidden_bias_gradient_error": 1.30385160446167e-08,
+    "all_operations_verified": true
+  },
+  "training": {
+    "initial_loss": 0.20817598700523376,
+    "final_loss": 0.0010577237699180841,
+    "loss_reduction_factor": 196.81507868671235,
+    "mean_absolute_error": 0.03439859300851822,
+    "training_seconds": 4.1367179579997355,
+    "passed": true
+  }
+}
