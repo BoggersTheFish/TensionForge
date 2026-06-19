@@ -59,3 +59,22 @@ Develop a narrow training runtime for TensionLM that uses:
 - fused tension operations
 - tension-gated compute allocation
 - deterministic JSON receipts
+
+## TensionForge v0.2 runtime foundation
+
+TensionForge is being converted from standalone experiments into a reusable
+OpenCL runtime.
+
+The initial runtime foundation provides:
+
+- central RX 480 and Rusticl device discovery;
+- reusable OpenCL context and profiling queue;
+- compiled program and kernel caching;
+- checked GPU buffer allocation;
+- CPU-to-GPU and GPU-to-CPU transfer helpers;
+- reusable operation modules;
+- deterministic JSON verification receipts.
+
+The first migrated operation is FP32 SAXPY. It is available through the public
+`TensionForgeRuntime` and `tensionforge.ops` APIs rather than embedding a full
+runtime inside the experiment.

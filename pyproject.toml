@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tensionforge"
+version = "0.2.0a0"
+description = "Verifier-first OpenCL training runtime for legacy GPUs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "BoggersTheFish", email = "boggersthefish@gmail.com"}
+]
+dependencies = [
+    "numpy>=2.0",
+    "pyopencl>=2024.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tensionforge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

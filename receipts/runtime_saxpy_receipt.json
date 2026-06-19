@@ -1,0 +1,35 @@
+{
+  "created_at_utc": "2026-06-19T14:43:02.601481+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "milestone": "reusable_runtime_saxpy",
+  "operation": {
+    "alpha": 1.5,
+    "approximate_bandwidth_gbps": 196.77710532488857,
+    "element_count": 16777216,
+    "local_size": 256,
+    "median_kernel_ms": 1.02312,
+    "operation": "saxpy_fp32",
+    "repetitions": 10,
+    "source_sha256": "35a5e20f072c0dbece05e0d3583f07a014e3ca661fa1f183319b409e5df61fc9"
+  },
+  "runtime": {
+    "kernel_cache_entries": 1,
+    "program_cache_entries": 1
+  },
+  "schema": "tensionforge.receipt.v1",
+  "verification": {
+    "maximum_absolute_error": 0.0,
+    "verified": true
+  }
+}
