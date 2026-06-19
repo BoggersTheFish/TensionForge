@@ -3,6 +3,12 @@ from .activations import (
     sigmoid_device,
     tanh_device,
 )
+from .backward import (
+    BACKWARD_SOURCE,
+    sigmoid_backward_device,
+    tanh_backward_device,
+    tension_update_backward_device,
+)
 from .elementwise import SAXPY_SOURCE, saxpy
 from .fused_tension import (
     FUSED_TENSION_LINEAR_SOURCE,
@@ -29,6 +35,10 @@ from .tension import (
 )
 
 __all__ = [
+    "tension_update_backward_device",
+    "tanh_backward_device",
+    "sigmoid_backward_device",
+    "BACKWARD_SOURCE",
     "ACTIVATION_SOURCE",
     "ADAMW_SOURCE",
     "FUSED_TENSION_LINEAR_SOURCE",

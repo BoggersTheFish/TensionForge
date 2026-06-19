@@ -185,3 +185,22 @@ A complete training step can now be assembled from public runtime operations:
 Parameters, optimiser moments, activations, losses, and gradients remain in GPU
 memory during training. Host transfers are only required when reading selected
 metrics or verification results.
+
+## Recurrent backward operations
+
+TensionForge contains the backward operations required for recurrent tension
+training.
+
+The runtime calculates:
+
+    tanh gradient = upstream * (1 - output squared)
+
+    sigmoid gradient = upstream * output * (1 - output)
+
+    state gradient = upstream * (1 - gate)
+    proposal gradient = upstream * gate
+    gate gradient = upstream * (proposal - state)
+
+These operations provide the local derivatives required to perform full
+backpropagation through time without moving recurrent states or gradients out
+of GPU memory.

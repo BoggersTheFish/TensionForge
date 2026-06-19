@@ -1,0 +1,82 @@
+{
+  "all_verified": true,
+  "configuration": {
+    "element_count": 8388608,
+    "precision": "float32",
+    "repetitions": 20
+  },
+  "created_at_utc": "2026-06-19T15:10:12.303301+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "milestone": "device_resident_recurrent_backward",
+  "operations": {
+    "sigmoid_backward": {
+      "approximate_bandwidth_gbps": 195.96498987696623,
+      "element_count": 8388608,
+      "grad_input_buffer_reused": false,
+      "host_transfers_during_repetitions": 0,
+      "maximum_absolute_error": 4.917383193969727e-07,
+      "median_kernel_ms": 0.5136799999999999,
+      "operation": "sigmoid_backward_device_fp32",
+      "repetitions": 20,
+      "shape": [
+        8388608
+      ],
+      "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1",
+      "verified": true
+    },
+    "tanh_backward": {
+      "approximate_bandwidth_gbps": 195.75158680771625,
+      "element_count": 8388608,
+      "grad_input_buffer_reused": false,
+      "host_transfers_during_repetitions": 0,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "median_kernel_ms": 0.51424,
+      "operation": "tanh_backward_device_fp32",
+      "repetitions": 20,
+      "shape": [
+        8388608
+      ],
+      "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1",
+      "verified": true
+    },
+    "tension_backward": {
+      "approximate_bandwidth_gbps": 188.65339587483132,
+      "buffers_reused": {
+        "grad_gate": false,
+        "grad_proposal": false,
+        "grad_state": false
+      },
+      "element_count": 8388608,
+      "errors": {
+        "grad_gate": 0.0,
+        "grad_proposal": 0.0,
+        "grad_state": 0.0
+      },
+      "host_transfers_during_repetitions": 0,
+      "median_kernel_ms": 1.24504,
+      "operation": "tension_update_backward_device_fp32",
+      "repetitions": 20,
+      "shape": [
+        8388608
+      ],
+      "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1",
+      "verified": {
+        "grad_gate": true,
+        "grad_proposal": true,
+        "grad_state": true
+      }
+    }
+  },
+  "schema": "tensionforge.receipt.v1"
+}
