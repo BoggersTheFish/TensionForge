@@ -1,0 +1,2380 @@
+{
+  "composition": {
+    "backward_operations": [
+      "tension_update_backward_device",
+      "tanh_backward_device",
+      "sigmoid_backward_device",
+      "linear_backward_device",
+      "add_inplace_device",
+      "merge_recurrent_state_gradient_device"
+    ],
+    "experiment_specific_monolithic_kernel": false,
+    "forward_operations": [
+      "concatenate_rows_device",
+      "linear_device",
+      "tanh_device",
+      "sigmoid_device",
+      "tension_update_device",
+      "mse_loss_grad_device"
+    ],
+    "optimizer": "adamw_update_device"
+  },
+  "configuration": {
+    "batch_size": 512,
+    "hidden_size": 16,
+    "input_size": 2,
+    "learning_rate": 0.01,
+    "output_size": 1,
+    "parameter_count": 625,
+    "precision": "float32",
+    "sequence_length": 8,
+    "task": "delayed_recall",
+    "training_steps": 300,
+    "validation_size": 256
+  },
+  "created_at_utc": "2026-06-19T15:14:48.384924+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "last_operation_metrics": {
+    "backward": {
+      "operation": "composable_tension_cell_backward",
+      "readout_backward": {
+        "approximate_matmul_gflops": 0.13617021276595745,
+        "buffers_reused": {
+          "grad_bias": true,
+          "grad_input": true,
+          "grad_weights": true
+        },
+        "combined_median_ms": 0.24064,
+        "compile_options": [
+          "-DTILE_SIZE=16"
+        ],
+        "grad_bias_median_ms": 0.16816,
+        "grad_bias_shape": [
+          1
+        ],
+        "grad_input_median_ms": 0.0072,
+        "grad_input_shape": [
+          512,
+          16
+        ],
+        "grad_output_shape": [
+          512,
+          1
+        ],
+        "grad_weights_median_ms": 0.06527999999999999,
+        "grad_weights_shape": [
+          16,
+          1
+        ],
+        "host_transfers_during_repetitions": 0,
+        "input_shape": [
+          512,
+          16
+        ],
+        "kernel_launches_per_backward": 3,
+        "operation": "linear_backward_device_fp32",
+        "repetitions": 1,
+        "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+        "tile_size": 16,
+        "weight_shape": [
+          16,
+          1
+        ]
+      },
+      "reverse_metrics": [
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 13.963636363636365,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.007039999999999999,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.488852988691438,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39615999999999996,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32432,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.007679999999999999,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06416,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.00832,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 13.653333333333334,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0072,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.4882519176423092,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39632,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32464,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.007359999999999999,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06432,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 24.71724137931034,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00928,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 7
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 13.963636363636365,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.007039999999999999,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.4846556584776482,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39727999999999997,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32448,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00784,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06496,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.008159999999999999,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 13.653333333333334,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0072,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.4858524788391778,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39696,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.3248,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.008,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06416,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 25.600000000000005,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00896,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 6
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 13.963636363636365,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.007039999999999999,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.4858524788391778,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39696,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32464,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00784,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06448,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.008799999999999999,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 13.653333333333334,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0072,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.4804819277108436,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.3984,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32464,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.007679999999999999,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06608,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 27.049056603773586,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00848,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 5
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 14.62857142857143,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.006719999999999999,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.4798875953432358,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39855999999999997,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32576,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00752,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06527999999999999,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.00832,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 18.618181818181817,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00528,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.4852538275584206,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39712,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32464,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00784,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06464,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 25.15087719298246,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00912,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 4
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 14.288372093023256,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.4852538275584206,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39712,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.3248,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.007679999999999999,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06464,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.00848,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 13.963636363636365,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.007039999999999999,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.482864038616251,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39776,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32336,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00784,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06656,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 24.71724137931034,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00928,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 3
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 13.963636363636365,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.007039999999999999,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.482864038616251,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39776,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.3248,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.008,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06496,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.00848,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 13.653333333333334,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0072,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.4816720257234728,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39808,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32624,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00752,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06432,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 26.065454545454546,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008799999999999999,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 2
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 14.288372093023256,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.486451612903226,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.3968,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32448,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.007679999999999999,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06464,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.00832,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 13.072340425531916,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00752,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.4792937399678974,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39871999999999996,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32464,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00752,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06656,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 23.893333333333334,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0096,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 1
+        },
+        {
+          "gate_backward": {
+            "approximate_bandwidth_gbps": 14.62857142857143,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.006719999999999999,
+            "operation": "sigmoid_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "gate_linear_backward": {
+            "approximate_matmul_gflops": 1.4858524788391778,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39696,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.32495999999999997,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.007679999999999999,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06432,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "merge_state_gradient": {
+            "batch_size": 512,
+            "hidden_size": 16,
+            "input_features": 2,
+            "kernel_ms": 0.00896,
+            "operation": "merge_recurrent_state_gradient_fp32",
+            "output_buffer_reused": true
+          },
+          "proposal_backward": {
+            "approximate_bandwidth_gbps": 14.288372093023256,
+            "element_count": 8192,
+            "grad_input_buffer_reused": true,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "tanh_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "proposal_linear_backward": {
+            "approximate_matmul_gflops": 1.490056588520614,
+            "buffers_reused": {
+              "grad_bias": true,
+              "grad_input": true,
+              "grad_weights": true
+            },
+            "combined_median_ms": 0.39584,
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "grad_bias_median_ms": 0.324,
+            "grad_bias_shape": [
+              16
+            ],
+            "grad_input_median_ms": 0.00752,
+            "grad_input_shape": [
+              512,
+              18
+            ],
+            "grad_output_shape": [
+              512,
+              16
+            ],
+            "grad_weights_median_ms": 0.06432,
+            "grad_weights_shape": [
+              18,
+              16
+            ],
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "kernel_launches_per_backward": 3,
+            "operation": "linear_backward_device_fp32",
+            "repetitions": 1,
+            "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "tension_backward": {
+            "approximate_bandwidth_gbps": 26.065454545454546,
+            "buffers_reused": {
+              "grad_gate": true,
+              "grad_proposal": true,
+              "grad_state": true
+            },
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008799999999999999,
+            "operation": "tension_update_backward_device_fp32",
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "c4d41a819cb2b6acf029d2e60adc2c90e431b20478439a69246b43b96828a8c1"
+          },
+          "time_index": 0
+        }
+      ],
+      "sequence_length": 8
+    },
+    "forward": {
+      "loss": {
+        "approximate_bandwidth_gbps": 1.4628571428571429,
+        "buffers_reused": {
+          "grad_prediction": true,
+          "loss_terms": true
+        },
+        "element_count": 512,
+        "host_transfers_during_repetitions": 0,
+        "median_kernel_ms": 0.0056,
+        "operation": "mse_loss_grad_device_fp32",
+        "repetitions": 1,
+        "shape": [
+          512,
+          1
+        ],
+        "source_sha256": "36c8b1d2b8fb696dec877103dd4f99daf89175071bbeb9897f7e885dad3c998c"
+      },
+      "operation": "composable_tension_cell_forward",
+      "readout": {
+        "bias_shape": [
+          1
+        ],
+        "compile_options": [
+          "-DTILE_SIZE=16"
+        ],
+        "gflops": 2.1551020408163266,
+        "host_transfers_during_repetitions": 0,
+        "input_shape": [
+          512,
+          16
+        ],
+        "median_kernel_ms": 0.00784,
+        "operation": "linear_forward_device_fp32",
+        "output_buffer_reused": true,
+        "output_shape": [
+          512,
+          1
+        ],
+        "repetitions": 1,
+        "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+        "tile_size": 16,
+        "weight_shape": [
+          16,
+          1
+        ]
+      },
+      "sequence_length": 8,
+      "step_metrics": [
+        {
+          "concatenate": {
+            "kernel_ms": 0.0051199999999999996,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 9.990243902439024,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00656,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.752380952380953,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.006719999999999999,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.828571428571436,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00896,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 17.429787234042553,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00752,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 0
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.006719999999999999,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 9.990243902439024,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00656,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 32.662068965517236,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00928,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.525581395348837,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.828571428571436,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00896,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 16.062745098039215,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008159999999999999,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 1
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.00688,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 10.24,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0063999999999999994,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.525581395348837,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 16.384,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 2
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.00688,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 9.752380952380953,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.006719999999999999,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 31.573333333333334,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.0096,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.752380952380953,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.006719999999999999,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.828571428571436,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00896,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 16.384,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 3
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.0072,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 9.525581395348837,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.752380952380953,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.006719999999999999,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 32.108474576271185,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.009439999999999999,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 16.062745098039215,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008159999999999999,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 4
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.0072,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 10.24,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.0063999999999999994,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 32.662068965517236,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00928,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.30909090909091,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.007039999999999999,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 32.662068965517236,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00928,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 15.753846153846153,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00832,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 5
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.007359999999999999,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 10.502564102564103,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00624,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.525581395348837,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 16.062745098039215,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.008159999999999999,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 6
+        },
+        {
+          "concatenate": {
+            "kernel_ms": 0.007039999999999999,
+            "left_shape": [
+              512,
+              2
+            ],
+            "operation": "concatenate_rows_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              18
+            ],
+            "right_shape": [
+              512,
+              16
+            ],
+            "source_sha256": "e35ee728fda8ffaa21173abc74494ccff26b40ce6a8428fb3e7fed49ac0121f2"
+          },
+          "gate_activation": {
+            "approximate_bandwidth_gbps": 9.990243902439024,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00656,
+            "operation": "sigmoid_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "gate_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 32.108474576271185,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.009439999999999999,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "proposal_activation": {
+            "approximate_bandwidth_gbps": 9.525581395348837,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00688,
+            "operation": "tanh_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "d3284cb76c224945b58fd99fb13c9857e4b87ac8e7833f33cad634c12318e9ab"
+          },
+          "proposal_linear": {
+            "bias_shape": [
+              16
+            ],
+            "compile_options": [
+              "-DTILE_SIZE=16"
+            ],
+            "gflops": 33.23508771929825,
+            "host_transfers_during_repetitions": 0,
+            "input_shape": [
+              512,
+              18
+            ],
+            "median_kernel_ms": 0.00912,
+            "operation": "linear_forward_device_fp32",
+            "output_buffer_reused": true,
+            "output_shape": [
+              512,
+              16
+            ],
+            "repetitions": 1,
+            "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+            "tile_size": 16,
+            "weight_shape": [
+              18,
+              16
+            ]
+          },
+          "state_update": {
+            "approximate_bandwidth_gbps": 16.718367346938777,
+            "element_count": 8192,
+            "host_transfers_during_repetitions": 0,
+            "median_kernel_ms": 0.00784,
+            "operation": "tension_update_device_fp32",
+            "output_buffer_reused": true,
+            "repetitions": 1,
+            "shape": [
+              512,
+              16
+            ],
+            "source_sha256": "2f34a64d68debf0abd5968eaaa12e522c3c3a489d6c80b58aa7bef62f5c529d2"
+          },
+          "time_index": 7
+        }
+      ]
+    },
+    "update": {
+      "gate_bias": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "element_count": 16,
+        "epsilon": 1e-08,
+        "host_transfers": 0,
+        "kernel_ms": 0.0063999999999999994,
+        "learning_rate": 0.01,
+        "operation": "adamw_update_device_fp32",
+        "shape": [
+          16
+        ],
+        "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+        "step": 300,
+        "weight_decay": 0.0
+      },
+      "gate_weights": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "element_count": 288,
+        "epsilon": 1e-08,
+        "host_transfers": 0,
+        "kernel_ms": 0.00688,
+        "learning_rate": 0.01,
+        "operation": "adamw_update_device_fp32",
+        "shape": [
+          18,
+          16
+        ],
+        "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+        "step": 300,
+        "weight_decay": 0.0
+      },
+      "proposal_bias": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "element_count": 16,
+        "epsilon": 1e-08,
+        "host_transfers": 0,
+        "kernel_ms": 0.0063999999999999994,
+        "learning_rate": 0.01,
+        "operation": "adamw_update_device_fp32",
+        "shape": [
+          16
+        ],
+        "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+        "step": 300,
+        "weight_decay": 0.0
+      },
+      "proposal_weights": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "element_count": 288,
+        "epsilon": 1e-08,
+        "host_transfers": 0,
+        "kernel_ms": 0.0063999999999999994,
+        "learning_rate": 0.01,
+        "operation": "adamw_update_device_fp32",
+        "shape": [
+          18,
+          16
+        ],
+        "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+        "step": 300,
+        "weight_decay": 0.0
+      },
+      "readout_bias": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "element_count": 1,
+        "epsilon": 1e-08,
+        "host_transfers": 0,
+        "kernel_ms": 0.0063999999999999994,
+        "learning_rate": 0.01,
+        "operation": "adamw_update_device_fp32",
+        "shape": [
+          1
+        ],
+        "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+        "step": 300,
+        "weight_decay": 0.0
+      },
+      "readout_weights": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "element_count": 16,
+        "epsilon": 1e-08,
+        "host_transfers": 0,
+        "kernel_ms": 0.00624,
+        "learning_rate": 0.01,
+        "operation": "adamw_update_device_fp32",
+        "shape": [
+          16,
+          1
+        ],
+        "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+        "step": 300,
+        "weight_decay": 0.0
+      }
+    }
+  },
+  "milestone": "composable_recurrent_tension_cell",
+  "passed": true,
+  "runtime": {
+    "kernel_cache_entries": 16,
+    "program_cache_entries": 8
+  },
+  "schema": "tensionforge.receipt.v1",
+  "training": {
+    "cpu_gpu_max_error": 4.76837158203125e-07,
+    "final_loss": 0.0005173932967494788,
+    "initial_loss": 0.31826289916862716,
+    "loss_reduction_factor": 615.1276044125667,
+    "steps_per_second": 13.427049384864146,
+    "training_seconds": 22.342957965000096,
+    "validation_loss": 0.0005350210716812704
+  }
+}

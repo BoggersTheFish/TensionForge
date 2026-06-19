@@ -204,3 +204,23 @@ The runtime calculates:
 These operations provide the local derivatives required to perform full
 backpropagation through time without moving recurrent states or gradients out
 of GPU memory.
+
+## Composable recurrent TensionCell
+
+TensionForge includes a recurrent TensionCell assembled from reusable public
+runtime operations.
+
+Each recurrent step calculates:
+
+    combined = concatenate(input, previous_state)
+    proposal = tanh(linear(combined))
+    gate = sigmoid(linear(combined))
+    next_state = previous_state + gate * (proposal - previous_state)
+
+The model retains every state, proposal, gate, and combined feature tensor in
+GPU memory. Full backpropagation through time propagates the state gradient
+backward through the sequence, accumulates recurrent parameter gradients, and
+updates all parameters with device-resident AdamW.
+
+A delayed-recall experiment verifies predictions and gradients against NumPy.
+No experiment-specific monolithic training kernel is used.
