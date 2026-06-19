@@ -1,0 +1,2199 @@
+{
+  "schema_version": "ten_son_training_bridge_v1",
+  "ten_son_source_commit_sha": "b4976f6e5846d0df498f6ee82c919b3215914415",
+  "tensionforge_starting_commit_sha": "5cde85d2a7bed3748d0256db8322bc736c417eb3",
+  "deterministic_seeds": {
+    "numpy": 5100,
+    "torch": 5101
+  },
+  "optimizer": {
+    "type": "AdamW",
+    "learning_rate": 0.0003,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epsilon": 1e-08,
+    "weight_decay": 0.01,
+    "step": 1,
+    "amsgrad": false,
+    "maximize": false,
+    "foreach": null,
+    "capturable": false,
+    "differentiable": false
+  },
+  "parameter_count": 44341,
+  "runtime_device_information": {
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org",
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "opencl_version": "OpenCL 3.0 ",
+    "compute_units": 36,
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303
+  },
+  "program_cache_size": 7,
+  "kernel_cache_size": 51,
+  "thresholds": {
+    "forward_rtol": 0.0005,
+    "forward_atol": 0.0005,
+    "gradient_maximum_absolute_error": 0.002,
+    "gradient_relative_l2_error": 0.002,
+    "gradient_cosine_similarity": 0.999,
+    "updated_parameter_maximum_absolute_error": 0.0002,
+    "updated_parameter_relative_l2_error": 0.0002
+  },
+  "cases": {
+    "A": {
+      "case": "A",
+      "model_config": {
+        "vocab_size": 8,
+        "output_size": 8,
+        "num_slots": 8,
+        "slot_dim": 8,
+        "embed_dim": 8,
+        "key_dim": 4,
+        "top_k": 3,
+        "microsteps": 2,
+        "max_microsteps": 4,
+        "proposal_hidden": 16,
+        "tension_hidden": 16,
+        "readout_hidden": 16,
+        "dropout": 0.0,
+        "adaptive_inference": false,
+        "tension_threshold": 0.15
+      },
+      "sequence_length": 1,
+      "batch_size": 2,
+      "objective": "sum(readout * deterministic_readout_gradient) + sum(final_workspace * deterministic_workspace_gradient)",
+      "selected_index_equality": true,
+      "final_workspace_maximum_absolute_error": 6.332993507385254e-08,
+      "readout_maximum_absolute_error": 1.6391277313232422e-07,
+      "gradient_metrics": [
+        {
+          "parameter_name": "initial_workspace",
+          "shape": [
+            8,
+            8
+          ],
+          "maximum_absolute_error": 1.1444091796875e-05,
+          "mean_absolute_error": 1.0468065738677979e-06,
+          "relative_l2_error": 5.937934845520164e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 14.176274299621582,
+          "tensionforge_gradient_maximum_absolute_value": 14.17628002166748,
+          "cosine_similarity": 0.9999999999998297,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "slot_keys",
+          "shape": [
+            8,
+            4
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-07,
+          "mean_absolute_error": 1.4981196727603674e-08,
+          "relative_l2_error": 3.2038500071616185e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.4065055549144745,
+          "tensionforge_gradient_maximum_absolute_value": 0.40650540590286255,
+          "cosine_similarity": 0.9999999999999598,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "summary_norm.weight",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 2.980232238769531e-07,
+          "mean_absolute_error": 8.847564458847046e-08,
+          "relative_l2_error": 3.498551933080157e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.950574517250061,
+          "tensionforge_gradient_maximum_absolute_value": 0.9505742788314819,
+          "cosine_similarity": 0.9999999999999531,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "summary_norm.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.825392246246338e-07,
+          "mean_absolute_error": 6.833579391241074e-08,
+          "relative_l2_error": 2.5631456301843163e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.6491308808326721,
+          "tensionforge_gradient_maximum_absolute_value": 0.6491308212280273,
+          "cosine_similarity": 0.9999999999999672,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.0.weight",
+          "shape": [
+            4,
+            24
+          ],
+          "maximum_absolute_error": 1.4551915228366852e-10,
+          "mean_absolute_error": 2.6349293117770383e-11,
+          "relative_l2_error": 9.273465461597347e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00013610301539301872,
+          "tensionforge_gradient_maximum_absolute_value": 0.00013610314636025578,
+          "cosine_similarity": 0.9999999999999856,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.0.bias",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 8.731149137020111e-11,
+          "mean_absolute_error": 4.1154635255225e-11,
+          "relative_l2_error": 9.651326766050194e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 8.347060793312266e-05,
+          "tensionforge_gradient_maximum_absolute_value": 8.347069524461403e-05,
+          "cosine_similarity": 0.9999999999999881,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.1.weight",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 2.1827872842550278e-11,
+          "mean_absolute_error": 1.5688783605583012e-11,
+          "relative_l2_error": 6.735477485297623e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 4.130753950448707e-05,
+          "tensionforge_gradient_maximum_absolute_value": 4.13075576943811e-05,
+          "cosine_similarity": 0.9999999999999555,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.1.bias",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 4.001776687800884e-11,
+          "mean_absolute_error": 2.1373125491663814e-11,
+          "relative_l2_error": 6.322178691975414e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 5.874571070307866e-05,
+          "tensionforge_gradient_maximum_absolute_value": 5.8745750720845535e-05,
+          "cosine_similarity": 0.9999999999999967,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.3.weight",
+          "shape": [
+            4,
+            4
+          ],
+          "maximum_absolute_error": 5.093170329928398e-11,
+          "mean_absolute_error": 3.1889157980913296e-11,
+          "relative_l2_error": 3.715769078099198e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0002092003560392186,
+          "tensionforge_gradient_maximum_absolute_value": 0.0002092003996949643,
+          "cosine_similarity": 0.9999999999999581,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.3.bias",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 5.4569682106375694e-11,
+          "mean_absolute_error": 4.547473508864641e-11,
+          "relative_l2_error": 3.2086489238229375e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00023701907775830477,
+          "tensionforge_gradient_maximum_absolute_value": 0.00023701912141405046,
+          "cosine_similarity": 0.9999999999999668,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 1.2665987014770508e-07,
+          "mean_absolute_error": 2.427259460091591e-08,
+          "relative_l2_error": 3.5344680978131515e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.32962602376937866,
+          "tensionforge_gradient_maximum_absolute_value": 0.32962605357170105,
+          "cosine_similarity": 0.9999999999999388,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.0.weight",
+          "shape": [
+            44
+          ],
+          "maximum_absolute_error": 2.5331974029541016e-07,
+          "mean_absolute_error": 4.732811992818659e-08,
+          "relative_l2_error": 3.1506298649536567e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.919319212436676,
+          "tensionforge_gradient_maximum_absolute_value": 0.9193191528320312,
+          "cosine_similarity": 0.9999999999999628,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.0.bias",
+          "shape": [
+            44
+          ],
+          "maximum_absolute_error": 1.6391277313232422e-07,
+          "mean_absolute_error": 5.5117363279516045e-08,
+          "relative_l2_error": 2.8264650470665024e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.5774967670440674,
+          "tensionforge_gradient_maximum_absolute_value": 0.5774967670440674,
+          "cosine_similarity": 0.9999999999999604,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.1.weight",
+          "shape": [
+            16,
+            44
+          ],
+          "maximum_absolute_error": 1.0728836059570312e-06,
+          "mean_absolute_error": 1.1302952109624377e-07,
+          "relative_l2_error": 3.2614355000013594e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 6.5829596519470215,
+          "tensionforge_gradient_maximum_absolute_value": 6.582959175109863,
+          "cosine_similarity": 0.9999999999999485,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 5.066394805908203e-07,
+          "mean_absolute_error": 1.3457611203193665e-07,
+          "relative_l2_error": 2.955561931544007e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 2.3111751079559326,
+          "tensionforge_gradient_maximum_absolute_value": 2.3111751079559326,
+          "cosine_similarity": 0.9999999999999566,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.3.weight",
+          "shape": [
+            8,
+            16
+          ],
+          "maximum_absolute_error": 7.152557373046875e-07,
+          "mean_absolute_error": 1.6289413906633854e-07,
+          "relative_l2_error": 2.4867162540473906e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 4.642334938049316,
+          "tensionforge_gradient_maximum_absolute_value": 4.642335414886475,
+          "cosine_similarity": 0.9999999999999691,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.3.bias",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 1.1920928955078125e-06,
+          "mean_absolute_error": 7.450580596923828e-07,
+          "relative_l2_error": 2.299835806414452e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 5.579797267913818,
+          "tensionforge_gradient_maximum_absolute_value": 5.579797744750977,
+          "cosine_similarity": 0.9999999999999736,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-08,
+          "mean_absolute_error": 1.8790160538628697e-09,
+          "relative_l2_error": 1.8552636950532538e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.09034309536218643,
+          "tensionforge_gradient_maximum_absolute_value": 0.09034309536218643,
+          "cosine_similarity": 0.9999999999999858,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.0.weight",
+          "shape": [
+            54
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 2.168504848938297e-09,
+          "relative_l2_error": 1.1076790019119126e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.11164326220750809,
+          "tensionforge_gradient_maximum_absolute_value": 0.11164326965808868,
+          "cosine_similarity": 0.9999999999999956,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.0.bias",
+          "shape": [
+            54
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 2.9685907065868378e-09,
+          "relative_l2_error": 1.0827633441599251e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.09807420521974564,
+          "tensionforge_gradient_maximum_absolute_value": 0.09807419776916504,
+          "cosine_similarity": 0.9999999999999949,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.1.weight",
+          "shape": [
+            16,
+            54
+          ],
+          "maximum_absolute_error": 1.1920928955078125e-07,
+          "mean_absolute_error": 7.418516698062713e-09,
+          "relative_l2_error": 1.2962802305583676e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.0066062211990356,
+          "tensionforge_gradient_maximum_absolute_value": 1.006606101989746,
+          "cosine_similarity": 0.9999999999999919,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 2.9802322387695312e-08,
+          "mean_absolute_error": 6.832124199718237e-09,
+          "relative_l2_error": 9.042083028732949e-08,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.2727096378803253,
+          "tensionforge_gradient_maximum_absolute_value": 0.2727096676826477,
+          "cosine_similarity": 0.9999999999999964,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.3.weight",
+          "shape": [
+            1,
+            16
+          ],
+          "maximum_absolute_error": 1.1920928955078125e-07,
+          "mean_absolute_error": 4.1676685214042664e-08,
+          "relative_l2_error": 1.4072863810265587e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.8672229051589966,
+          "tensionforge_gradient_maximum_absolute_value": 0.8672229051589966,
+          "cosine_similarity": 0.9999999999999902,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.3.bias",
+          "shape": [
+            1
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.1746207475662231,
+          "tensionforge_gradient_maximum_absolute_value": 1.1746207475662231,
+          "cosine_similarity": 1.0,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.0.weight",
+          "shape": [
+            16,
+            24
+          ],
+          "maximum_absolute_error": 1.3969838619232178e-09,
+          "mean_absolute_error": 1.2736582159315427e-10,
+          "relative_l2_error": 7.527428580123794e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.002115989336743951,
+          "tensionforge_gradient_maximum_absolute_value": 0.002115987939760089,
+          "cosine_similarity": 0.9999999999999655,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.0.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.1641532182693481e-09,
+          "mean_absolute_error": 5.011315806768835e-10,
+          "relative_l2_error": 7.262540412190187e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0019499288173392415,
+          "tensionforge_gradient_maximum_absolute_value": 0.0019499282352626324,
+          "cosine_similarity": 0.9999999999998653,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.2.weight",
+          "shape": [
+            8,
+            16
+          ],
+          "maximum_absolute_error": 1.6298145055770874e-09,
+          "mean_absolute_error": 3.453095587246935e-10,
+          "relative_l2_error": 8.049270222070404e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.002226252341642976,
+          "tensionforge_gradient_maximum_absolute_value": 0.0022262507118284702,
+          "cosine_similarity": 0.9999999999999744,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.2.bias",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 5.587935447692871e-09,
+          "mean_absolute_error": 2.35741026699543e-09,
+          "relative_l2_error": 6.007246175136497e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.009530967101454735,
+          "tensionforge_gradient_maximum_absolute_value": 0.009530961513519287,
+          "cosine_similarity": 0.9999999999999819,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.0.weight",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 2.086162567138672e-07,
+          "mean_absolute_error": 1.2852251529693604e-07,
+          "relative_l2_error": 3.7822072653924166e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.6062667369842529,
+          "tensionforge_gradient_maximum_absolute_value": 0.6062666177749634,
+          "cosine_similarity": 0.9999999999999296,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.0.bias",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 1.7881393432617188e-07,
+          "mean_absolute_error": 9.685754776000977e-08,
+          "relative_l2_error": 1.5696077097798655e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.2412294149398804,
+          "tensionforge_gradient_maximum_absolute_value": 1.24122953414917,
+          "cosine_similarity": 0.9999999999999877,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.1.weight",
+          "shape": [
+            16,
+            8
+          ],
+          "maximum_absolute_error": 4.76837158203125e-07,
+          "mean_absolute_error": 1.212101778946817e-07,
+          "relative_l2_error": 2.0231840493048982e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.2333168983459473,
+          "tensionforge_gradient_maximum_absolute_value": 3.2333171367645264,
+          "cosine_similarity": 0.9999999999999798,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 2.980232238769531e-07,
+          "mean_absolute_error": 1.150183379650116e-07,
+          "relative_l2_error": 1.624958754506736e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 2.160006284713745,
+          "tensionforge_gradient_maximum_absolute_value": 2.160006523132324,
+          "cosine_similarity": 0.9999999999999885,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.3.weight",
+          "shape": [
+            16,
+            16
+          ],
+          "maximum_absolute_error": 7.152557373046875e-07,
+          "mean_absolute_error": 8.956158126238734e-08,
+          "relative_l2_error": 1.7082394242929128e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.7953617572784424,
+          "tensionforge_gradient_maximum_absolute_value": 3.7953619956970215,
+          "cosine_similarity": 0.9999999999999853,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.3.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.889920711517334,
+          "tensionforge_gradient_maximum_absolute_value": 3.889920711517334,
+          "cosine_similarity": 1.0,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "input_embedding[0]",
+          "shape": [
+            2,
+            8
+          ],
+          "maximum_absolute_error": 1.7881393432617188e-07,
+          "mean_absolute_error": 5.681067705154419e-08,
+          "relative_l2_error": 2.388282674184602e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.6212430000305176,
+          "tensionforge_gradient_maximum_absolute_value": 0.621242880821228,
+          "cosine_similarity": 0.999999999999985,
+          "both_exactly_zero": false
+        }
+      ],
+      "aggregate_gradient_metrics": {
+        "worst_maximum_absolute_error": 1.1444091796875e-05,
+        "worst_relative_l2_error_non_negligible": 9.651326766050194e-07,
+        "lowest_cosine_similarity_non_negligible": 0.9999999999998297,
+        "matched_parameters": 35,
+        "failed_parameters": 0
+      },
+      "passed": true
+    },
+    "B": {
+      "case": "B",
+      "model_config": {
+        "vocab_size": 8,
+        "output_size": 8,
+        "num_slots": 8,
+        "slot_dim": 8,
+        "embed_dim": 8,
+        "key_dim": 4,
+        "top_k": 3,
+        "microsteps": 2,
+        "max_microsteps": 4,
+        "proposal_hidden": 16,
+        "tension_hidden": 16,
+        "readout_hidden": 16,
+        "dropout": 0.0,
+        "adaptive_inference": false,
+        "tension_threshold": 0.15
+      },
+      "sequence_length": 4,
+      "batch_size": 2,
+      "objective": "sum(readout * deterministic_readout_gradient) + sum(final_workspace * deterministic_workspace_gradient)",
+      "selected_index_equality": true,
+      "final_workspace_maximum_absolute_error": 5.960464477539063e-08,
+      "readout_maximum_absolute_error": 1.1920928955078125e-07,
+      "gradient_metrics": [
+        {
+          "parameter_name": "initial_workspace",
+          "shape": [
+            8,
+            8
+          ],
+          "maximum_absolute_error": 1.430511474609375e-06,
+          "mean_absolute_error": 2.5201006792485714e-07,
+          "relative_l2_error": 2.841706300997811e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 5.5546088218688965,
+          "tensionforge_gradient_maximum_absolute_value": 5.55460786819458,
+          "cosine_similarity": 0.9999999999999654,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "slot_keys",
+          "shape": [
+            8,
+            4
+          ],
+          "maximum_absolute_error": 4.470348358154297e-08,
+          "mean_absolute_error": 1.1292286217212677e-08,
+          "relative_l2_error": 2.3473219719256853e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.24411848187446594,
+          "tensionforge_gradient_maximum_absolute_value": 0.24411845207214355,
+          "cosine_similarity": 0.9999999999999738,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "summary_norm.weight",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.862645149230957e-07,
+          "mean_absolute_error": 5.704350769519806e-08,
+          "relative_l2_error": 6.380568682058528e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.3760019838809967,
+          "tensionforge_gradient_maximum_absolute_value": 0.37600189447402954,
+          "cosine_similarity": 0.9999999999997974,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "summary_norm.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.862645149230957e-07,
+          "mean_absolute_error": 7.066410034894943e-08,
+          "relative_l2_error": 5.05153610164053e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.33761289715766907,
+          "tensionforge_gradient_maximum_absolute_value": 0.3376128077507019,
+          "cosine_similarity": 0.9999999999999026,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.0.weight",
+          "shape": [
+            4,
+            24
+          ],
+          "maximum_absolute_error": 6.184563972055912e-11,
+          "mean_absolute_error": 6.706746269458108e-12,
+          "relative_l2_error": 1.4336606544112844e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.131648918497376e-05,
+          "tensionforge_gradient_maximum_absolute_value": 3.131654011667706e-05,
+          "cosine_similarity": 0.9999999999989918,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.0.bias",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 1.4551915228366852e-11,
+          "mean_absolute_error": 9.663381206337363e-12,
+          "relative_l2_error": 1.8221339418558864e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 7.831736184016336e-06,
+          "tensionforge_gradient_maximum_absolute_value": 7.831750735931564e-06,
+          "cosine_similarity": 0.9999999999985324,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.1.weight",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 8.185452315956354e-12,
+          "mean_absolute_error": 4.085620730620576e-12,
+          "relative_l2_error": 1.667440309942587e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 5.279674951452762e-06,
+          "tensionforge_gradient_maximum_absolute_value": 5.279681317915674e-06,
+          "cosine_similarity": 0.9999999999987026,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.1.bias",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 7.73070496506989e-12,
+          "mean_absolute_error": 6.863842827442568e-12,
+          "relative_l2_error": 1.934669684569522e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 6.153040885692462e-06,
+          "tensionforge_gradient_maximum_absolute_value": 6.153047706902726e-06,
+          "cosine_similarity": 0.9999999999981394,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.3.weight",
+          "shape": [
+            4,
+            4
+          ],
+          "maximum_absolute_error": 3.2741809263825417e-11,
+          "mean_absolute_error": 8.746781077206833e-12,
+          "relative_l2_error": 8.760008632878853e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.270872912253253e-05,
+          "tensionforge_gradient_maximum_absolute_value": 3.270869638072327e-05,
+          "cosine_similarity": 0.9999999999998974,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "router.query_network.3.bias",
+          "shape": [
+            4
+          ],
+          "maximum_absolute_error": 2.546585164964199e-11,
+          "mean_absolute_error": 1.546140993013978e-11,
+          "relative_l2_error": 8.694071445451203e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.616560934460722e-05,
+          "tensionforge_gradient_maximum_absolute_value": 3.616558387875557e-05,
+          "cosine_similarity": 0.9999999999999505,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 5.960464477539063e-08,
+          "mean_absolute_error": 9.735231287777424e-09,
+          "relative_l2_error": 5.559300196690372e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.1052766740322113,
+          "tensionforge_gradient_maximum_absolute_value": 0.10527665168046951,
+          "cosine_similarity": 0.9999999999998511,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.0.weight",
+          "shape": [
+            44
+          ],
+          "maximum_absolute_error": 1.601874828338623e-07,
+          "mean_absolute_error": 2.4055638773874802e-08,
+          "relative_l2_error": 4.590198622574097e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.3766036629676819,
+          "tensionforge_gradient_maximum_absolute_value": 0.3766036033630371,
+          "cosine_similarity": 0.9999999999998997,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.0.bias",
+          "shape": [
+            44
+          ],
+          "maximum_absolute_error": 1.043081283569336e-07,
+          "mean_absolute_error": 4.032203419642015e-08,
+          "relative_l2_error": 4.835440099060291e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.2676159143447876,
+          "tensionforge_gradient_maximum_absolute_value": 0.2676158845424652,
+          "cosine_similarity": 0.9999999999998966,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.1.weight",
+          "shape": [
+            16,
+            44
+          ],
+          "maximum_absolute_error": 1.6689300537109375e-06,
+          "mean_absolute_error": 7.262683125604368e-08,
+          "relative_l2_error": 4.982705808749654e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.8770945072174072,
+          "tensionforge_gradient_maximum_absolute_value": 1.8770928382873535,
+          "cosine_similarity": 0.9999999999998953,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 2.980232238769531e-07,
+          "mean_absolute_error": 1.1699739843606949e-07,
+          "relative_l2_error": 4.7396516154251176e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.543134868144989,
+          "tensionforge_gradient_maximum_absolute_value": 0.5431345701217651,
+          "cosine_similarity": 0.9999999999999164,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.3.weight",
+          "shape": [
+            8,
+            16
+          ],
+          "maximum_absolute_error": 4.76837158203125e-07,
+          "mean_absolute_error": 1.098615030059591e-07,
+          "relative_l2_error": 3.489907962506298e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 2.711071252822876,
+          "tensionforge_gradient_maximum_absolute_value": 2.7110707759857178,
+          "cosine_similarity": 0.9999999999999434,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "proposal.network.3.bias",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 8.344650268554688e-07,
+          "mean_absolute_error": 5.075708031654358e-07,
+          "relative_l2_error": 2.1705446681981286e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 5.625810146331787,
+          "tensionforge_gradient_maximum_absolute_value": 5.625809669494629,
+          "cosine_similarity": 0.9999999999999774,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 6.984919309616089e-09,
+          "mean_absolute_error": 1.3224052963778377e-09,
+          "relative_l2_error": 1.941458997316658e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.004697131924331188,
+          "tensionforge_gradient_maximum_absolute_value": 0.004697125870734453,
+          "cosine_similarity": 0.9999999999989231,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.0.weight",
+          "shape": [
+            54
+          ],
+          "maximum_absolute_error": 1.2150849215686321e-08,
+          "mean_absolute_error": 2.1309797712429253e-09,
+          "relative_l2_error": 1.926840298478889e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.006150893867015839,
+          "tensionforge_gradient_maximum_absolute_value": 0.006150893867015839,
+          "cosine_similarity": 0.9999999999983877,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.0.bias",
+          "shape": [
+            54
+          ],
+          "maximum_absolute_error": 1.3969838619232178e-08,
+          "mean_absolute_error": 3.767194424721378e-09,
+          "relative_l2_error": 2.7681113528320857e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00486412039026618,
+          "tensionforge_gradient_maximum_absolute_value": 0.004864110145717859,
+          "cosine_similarity": 0.9999999999992215,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.1.weight",
+          "shape": [
+            16,
+            54
+          ],
+          "maximum_absolute_error": 1.3783574104309082e-07,
+          "mean_absolute_error": 5.916339352585999e-09,
+          "relative_l2_error": 1.5671718983663362e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.04762795940041542,
+          "tensionforge_gradient_maximum_absolute_value": 0.047627903521060944,
+          "cosine_similarity": 0.9999999999993053,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 4.0046870708465576e-08,
+          "mean_absolute_error": 1.123407855629921e-08,
+          "relative_l2_error": 2.740492417462799e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.012464242056012154,
+          "tensionforge_gradient_maximum_absolute_value": 0.012464217841625214,
+          "cosine_similarity": 0.999999999999029,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.3.weight",
+          "shape": [
+            1,
+            16
+          ],
+          "maximum_absolute_error": 1.2014061212539673e-07,
+          "mean_absolute_error": 3.13884811475873e-08,
+          "relative_l2_error": 2.454971807618734e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.054513223469257355,
+          "tensionforge_gradient_maximum_absolute_value": 0.05451316386461258,
+          "cosine_similarity": 0.9999999999972028,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "tension.network.3.bias",
+          "shape": [
+            1
+          ],
+          "maximum_absolute_error": 1.4156103134155273e-07,
+          "mean_absolute_error": 1.4156103134155273e-07,
+          "relative_l2_error": 2.714732481688415e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.05214548110961914,
+          "tensionforge_gradient_maximum_absolute_value": 0.0521453395485878,
+          "cosine_similarity": 1.0,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.0.weight",
+          "shape": [
+            16,
+            24
+          ],
+          "maximum_absolute_error": 1.8917489796876907e-09,
+          "mean_absolute_error": 2.163895914305177e-10,
+          "relative_l2_error": 6.342427564223312e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.000308515562210232,
+          "tensionforge_gradient_maximum_absolute_value": 0.0003085172502323985,
+          "cosine_similarity": 0.999999999995117,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.0.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 2.4156179279088974e-09,
+          "mean_absolute_error": 9.946461432264186e-10,
+          "relative_l2_error": 1.7788938438017602e-05,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00012569667887873948,
+          "tensionforge_gradient_maximum_absolute_value": 0.00012569548562169075,
+          "cosine_similarity": 0.9999999998456688,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.2.weight",
+          "shape": [
+            8,
+            16
+          ],
+          "maximum_absolute_error": 1.57160684466362e-09,
+          "mean_absolute_error": 3.497362399684789e-10,
+          "relative_l2_error": 5.897810231807064e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00030661316122859716,
+          "tensionforge_gradient_maximum_absolute_value": 0.0003066128119826317,
+          "cosine_similarity": 0.9999999999856957,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.query.2.bias",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 1.210719347000122e-08,
+          "mean_absolute_error": 5.928995960857719e-09,
+          "relative_l2_error": 1.7447961729466224e-05,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0006896486738696694,
+          "tensionforge_gradient_maximum_absolute_value": 0.0006896549602970481,
+          "cosine_similarity": 0.999999999853829,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.0.weight",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-07,
+          "mean_absolute_error": 7.450580596923828e-08,
+          "relative_l2_error": 2.9839880222076465e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.5245258212089539,
+          "tensionforge_gradient_maximum_absolute_value": 0.5245258212089539,
+          "cosine_similarity": 0.999999999999975,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.0.bias",
+          "shape": [
+            8
+          ],
+          "maximum_absolute_error": 1.1920928955078125e-07,
+          "mean_absolute_error": 6.891787052154541e-08,
+          "relative_l2_error": 2.0180413826645899e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.6188450455665588,
+          "tensionforge_gradient_maximum_absolute_value": 0.6188449859619141,
+          "cosine_similarity": 0.9999999999999891,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.1.weight",
+          "shape": [
+            16,
+            8
+          ],
+          "maximum_absolute_error": 2.980232238769531e-07,
+          "mean_absolute_error": 5.8014848036691546e-08,
+          "relative_l2_error": 1.7058978799055785e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 2.291152238845825,
+          "tensionforge_gradient_maximum_absolute_value": 2.291152000427246,
+          "cosine_similarity": 0.9999999999999859,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 2.384185791015625e-07,
+          "mean_absolute_error": 6.461050361394882e-08,
+          "relative_l2_error": 1.8308229537163492e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.4588265419006348,
+          "tensionforge_gradient_maximum_absolute_value": 1.4588263034820557,
+          "cosine_similarity": 0.9999999999999853,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.3.weight",
+          "shape": [
+            16,
+            16
+          ],
+          "maximum_absolute_error": 4.470348358154297e-07,
+          "mean_absolute_error": 4.111586804356193e-08,
+          "relative_l2_error": 1.2563675341774747e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 2.7345900535583496,
+          "tensionforge_gradient_maximum_absolute_value": 2.7345900535583496,
+          "cosine_similarity": 0.9999999999999921,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "readout.output.3.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 2.711108446121216,
+          "tensionforge_gradient_maximum_absolute_value": 2.711108446121216,
+          "cosine_similarity": 1.0000000000000002,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "input_embedding[0]",
+          "shape": [
+            2,
+            8
+          ],
+          "maximum_absolute_error": 2.2351741790771484e-08,
+          "mean_absolute_error": 6.461050361394882e-09,
+          "relative_l2_error": 2.0454734297120513e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.12054659426212311,
+          "tensionforge_gradient_maximum_absolute_value": 0.12054657936096191,
+          "cosine_similarity": 0.999999999999984,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "input_embedding[1]",
+          "shape": [
+            2,
+            8
+          ],
+          "maximum_absolute_error": 2.2351741790771484e-08,
+          "mean_absolute_error": 7.057678885757923e-09,
+          "relative_l2_error": 5.473983517484863e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.04213616997003555,
+          "tensionforge_gradient_maximum_absolute_value": 0.04213614761829376,
+          "cosine_similarity": 0.999999999999865,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "input_embedding[2]",
+          "shape": [
+            2,
+            8
+          ],
+          "maximum_absolute_error": 5.21540641784668e-08,
+          "mean_absolute_error": 1.9150306229676062e-08,
+          "relative_l2_error": 2.918906927286765e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.13516123592853546,
+          "tensionforge_gradient_maximum_absolute_value": 0.13516119122505188,
+          "cosine_similarity": 0.9999999999999586,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "input_embedding[3]",
+          "shape": [
+            2,
+            8
+          ],
+          "maximum_absolute_error": 4.936009645462036e-08,
+          "mean_absolute_error": 2.176966518163681e-08,
+          "relative_l2_error": 2.0638402899079784e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.24609671533107758,
+          "tensionforge_gradient_maximum_absolute_value": 0.24609671533107758,
+          "cosine_similarity": 0.9999999999999788,
+          "both_exactly_zero": false
+        }
+      ],
+      "aggregate_gradient_metrics": {
+        "worst_maximum_absolute_error": 1.6689300537109375e-06,
+        "worst_relative_l2_error_non_negligible": 1.7788938438017602e-05,
+        "lowest_cosine_similarity_non_negligible": 0.9999999998456688,
+        "matched_parameters": 38,
+        "failed_parameters": 0
+      },
+      "passed": true
+    },
+    "C": {
+      "case": "C",
+      "model_config": {
+        "vocab_size": 16,
+        "output_size": 16,
+        "num_slots": 32,
+        "slot_dim": 32,
+        "embed_dim": 32,
+        "key_dim": 16,
+        "top_k": 6,
+        "microsteps": 2,
+        "max_microsteps": 4,
+        "proposal_hidden": 64,
+        "tension_hidden": 64,
+        "readout_hidden": 64,
+        "dropout": 0.0,
+        "adaptive_inference": false,
+        "tension_threshold": 0.15
+      },
+      "task_config": {
+        "name": "delayed_recall",
+        "vocab_size": 16,
+        "seq_len": 14,
+        "max_depth": 4,
+        "delay": 10
+      },
+      "batch_size": 2,
+      "batch_contents_sha256": "8935f122088436035de922bd0b195635fbd700519a58180594095cdec8190027",
+      "batch_inputs": [
+        [
+          2,
+          14,
+          9,
+          10,
+          1,
+          5,
+          4,
+          10,
+          3,
+          7,
+          7,
+          15,
+          13,
+          13
+        ],
+        [
+          2,
+          14,
+          5,
+          10,
+          2,
+          7,
+          4,
+          12,
+          7,
+          6,
+          5,
+          15,
+          3,
+          2
+        ]
+      ],
+      "selected_index_equality": true,
+      "logits_maximum_absolute_error": 1.7881393432617188e-07,
+      "final_workspace_maximum_absolute_error": 2.2724270820617676e-07,
+      "pytorch_loss": 2.80507755279541,
+      "tensionforge_loss": 2.8050770973759938,
+      "loss_absolute_error": 4.554194164008152e-07,
+      "auxiliary_loss": {
+        "tension_balance": 0.0,
+        "slot_usage": 1.928766374476254e-06
+      },
+      "gradient_clip": {
+        "max_norm": 1.0,
+        "pytorch_preclip_norm": 2.5555031299591064,
+        "tensionforge_preclip_norm": 2.55550328981202,
+        "tensionforge_scale": 0.3913121977476934
+      },
+      "gradient_metrics": [
+        {
+          "parameter_name": "embedding.weight",
+          "shape": [
+            16,
+            32
+          ],
+          "maximum_absolute_error": 2.7939677238464355e-09,
+          "mean_absolute_error": 3.738200859970675e-10,
+          "relative_l2_error": 5.939485694878549e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.004543568938970566,
+          "tensionforge_gradient_maximum_absolute_value": 0.00454356987029314,
+          "cosine_similarity": 0.9999999999998259,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.initial_workspace",
+          "shape": [
+            32,
+            32
+          ],
+          "maximum_absolute_error": 7.450580596923828e-08,
+          "mean_absolute_error": 2.402661181122312e-09,
+          "relative_l2_error": 4.79667723936017e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.14832772314548492,
+          "tensionforge_gradient_maximum_absolute_value": 0.14832770824432373,
+          "cosine_similarity": 0.9999999999998984,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.slot_keys",
+          "shape": [
+            32,
+            16
+          ],
+          "maximum_absolute_error": 2.0954757928848267e-09,
+          "mean_absolute_error": 2.1477708500583503e-10,
+          "relative_l2_error": 5.795776409703504e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0034719654358923435,
+          "tensionforge_gradient_maximum_absolute_value": 0.0034719654358923435,
+          "cosine_similarity": 0.9999999999998348,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.summary_norm.weight",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 1.816079020500183e-08,
+          "mean_absolute_error": 2.9242528398754075e-09,
+          "relative_l2_error": 8.36155358410921e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.018162041902542114,
+          "tensionforge_gradient_maximum_absolute_value": 0.018162036314606667,
+          "cosine_similarity": 0.9999999999996982,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.summary_norm.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 8.381903171539307e-09,
+          "mean_absolute_error": 3.4747245081234723e-09,
+          "relative_l2_error": 6.114243339150296e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.01662062667310238,
+          "tensionforge_gradient_maximum_absolute_value": 0.01662062294781208,
+          "cosine_similarity": 0.9999999999998386,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.router.query_network.0.weight",
+          "shape": [
+            16,
+            96
+          ],
+          "maximum_absolute_error": 3.410605131648481e-12,
+          "mean_absolute_error": 3.9332541853139463e-13,
+          "relative_l2_error": 9.68891277005967e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 3.5828284126182552e-06,
+          "tensionforge_gradient_maximum_absolute_value": 3.5828270483762026e-06,
+          "cosine_similarity": 0.9999999999996808,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.router.query_network.0.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.2505552149377763e-12,
+          "mean_absolute_error": 4.705125178361413e-13,
+          "relative_l2_error": 9.063140678362011e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.6599371974734822e-06,
+          "tensionforge_gradient_maximum_absolute_value": 1.6599362879787805e-06,
+          "cosine_similarity": 0.9999999999997623,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.router.query_network.1.weight",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 3.979039320256561e-13,
+          "mean_absolute_error": 1.637578961322106e-13,
+          "relative_l2_error": 1.1710971435106334e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 4.0510195731258136e-07,
+          "tensionforge_gradient_maximum_absolute_value": 4.051017299389059e-07,
+          "cosine_similarity": 0.9999999999996484,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.router.query_network.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 7.105427357601002e-13,
+          "mean_absolute_error": 2.6689761511988763e-13,
+          "relative_l2_error": 1.0664751993009118e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 8.736403174225416e-07,
+          "tensionforge_gradient_maximum_absolute_value": 8.73639748988353e-07,
+          "cosine_similarity": 0.9999999999996986,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.router.query_network.3.weight",
+          "shape": [
+            16,
+            16
+          ],
+          "maximum_absolute_error": 1.4779288903810084e-12,
+          "mean_absolute_error": 4.189218416605911e-13,
+          "relative_l2_error": 9.135755622555538e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.7558205627210555e-06,
+          "tensionforge_gradient_maximum_absolute_value": 1.7558198806000291e-06,
+          "cosine_similarity": 0.9999999999996882,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.router.query_network.3.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.4495071809506044e-12,
+          "mean_absolute_error": 6.910028105266974e-13,
+          "relative_l2_error": 9.171157311849546e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 1.8430102954880567e-06,
+          "tensionforge_gradient_maximum_absolute_value": 1.8430098407407058e-06,
+          "cosine_similarity": 0.9999999999996966,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 3.6088749766349792e-09,
+          "mean_absolute_error": 6.439222488552332e-10,
+          "relative_l2_error": 3.5403184222597845e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.008795758709311485,
+          "tensionforge_gradient_maximum_absolute_value": 0.00879575964063406,
+          "cosine_similarity": 0.9999999999999396,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.network.0.weight",
+          "shape": [
+            152
+          ],
+          "maximum_absolute_error": 1.83936208486557e-08,
+          "mean_absolute_error": 1.8980017557623796e-09,
+          "relative_l2_error": 7.554932180022207e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.01765994355082512,
+          "tensionforge_gradient_maximum_absolute_value": 0.01765994168817997,
+          "cosine_similarity": 0.9999999999997258,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.network.0.bias",
+          "shape": [
+            152
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 2.6564904194521277e-09,
+          "relative_l2_error": 5.896212547565416e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.013767791911959648,
+          "tensionforge_gradient_maximum_absolute_value": 0.013767791911959648,
+          "cosine_similarity": 0.9999999999998271,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.network.1.weight",
+          "shape": [
+            64,
+            152
+          ],
+          "maximum_absolute_error": 1.0058283805847168e-07,
+          "mean_absolute_error": 4.536955092317528e-09,
+          "relative_l2_error": 6.337979732073824e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.14255958795547485,
+          "tensionforge_gradient_maximum_absolute_value": 0.14255957305431366,
+          "cosine_similarity": 0.9999999999997998,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.network.1.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 2.7939677238464355e-08,
+          "mean_absolute_error": 7.043581717880443e-09,
+          "relative_l2_error": 6.319035653589877e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0422852486371994,
+          "tensionforge_gradient_maximum_absolute_value": 0.04228523373603821,
+          "cosine_similarity": 0.9999999999998007,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.network.3.weight",
+          "shape": [
+            32,
+            64
+          ],
+          "maximum_absolute_error": 8.940696716308594e-08,
+          "mean_absolute_error": 7.557389380963286e-09,
+          "relative_l2_error": 5.698996984494907e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.16267302632331848,
+          "tensionforge_gradient_maximum_absolute_value": 0.16267305612564087,
+          "cosine_similarity": 0.9999999999998378,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.proposal.network.3.bias",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 8.940696716308594e-08,
+          "mean_absolute_error": 2.5942426873371005e-08,
+          "relative_l2_error": 5.468765431765649e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.174556165933609,
+          "tensionforge_gradient_maximum_absolute_value": 0.17455622553825378,
+          "cosine_similarity": 0.9999999999998511,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 7.639755494892597e-11,
+          "mean_absolute_error": 1.3585577107733116e-11,
+          "relative_l2_error": 1.0330349142601962e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 6.136627052910626e-05,
+          "tensionforge_gradient_maximum_absolute_value": 6.13662414252758e-05,
+          "cosine_similarity": 0.9999999999994788,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.network.0.weight",
+          "shape": [
+            186
+          ],
+          "maximum_absolute_error": 4.0745362639427185e-10,
+          "mean_absolute_error": 3.79451213580411e-11,
+          "relative_l2_error": 1.1161521921441589e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00029843419906683266,
+          "tensionforge_gradient_maximum_absolute_value": 0.00029843419906683266,
+          "cosine_similarity": 0.9999999999994305,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.network.0.bias",
+          "shape": [
+            186
+          ],
+          "maximum_absolute_error": 1.8917489796876907e-10,
+          "mean_absolute_error": 3.926718926122312e-11,
+          "relative_l2_error": 1.1230535902615236e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00011906974395969883,
+          "tensionforge_gradient_maximum_absolute_value": 0.00011906969302799553,
+          "cosine_similarity": 0.9999999999994681,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.network.1.weight",
+          "shape": [
+            64,
+            186
+          ],
+          "maximum_absolute_error": 2.029992174357176e-09,
+          "mean_absolute_error": 1.01814208982754e-10,
+          "relative_l2_error": 9.431754621982262e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0020012452732771635,
+          "tensionforge_gradient_maximum_absolute_value": 0.0020012438762933016,
+          "cosine_similarity": 0.9999999999996451,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.network.1.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 4.511093720793724e-10,
+          "mean_absolute_error": 1.0347989132242219e-10,
+          "relative_l2_error": 1.1154004006104648e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00035481827217154205,
+          "tensionforge_gradient_maximum_absolute_value": 0.00035481806844472885,
+          "cosine_similarity": 0.9999999999995273,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.network.3.weight",
+          "shape": [
+            1,
+            64
+          ],
+          "maximum_absolute_error": 5.122274160385132e-09,
+          "mean_absolute_error": 9.828795555222314e-10,
+          "relative_l2_error": 9.29985676107144e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.004995604977011681,
+          "tensionforge_gradient_maximum_absolute_value": 0.004995602648705244,
+          "cosine_similarity": 0.9999999999997025,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.tension.network.3.bias",
+          "shape": [
+            1
+          ],
+          "maximum_absolute_error": 1.57160684466362e-09,
+          "mean_absolute_error": 1.57160684466362e-09,
+          "relative_l2_error": 8.646557549245347e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00018176098819822073,
+          "tensionforge_gradient_maximum_absolute_value": 0.00018175941659137607,
+          "cosine_similarity": 1.0,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.query.0.weight",
+          "shape": [
+            64,
+            96
+          ],
+          "maximum_absolute_error": 3.8562575355172157e-10,
+          "mean_absolute_error": 2.0893303629986443e-11,
+          "relative_l2_error": 1.3521872380793632e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0002838857762981206,
+          "tensionforge_gradient_maximum_absolute_value": 0.0002838854561559856,
+          "cosine_similarity": 0.9999999999991593,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.query.0.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 2.3283064365386963e-10,
+          "mean_absolute_error": 5.234035427292838e-11,
+          "relative_l2_error": 1.6837452336531746e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.0001419686886947602,
+          "tensionforge_gradient_maximum_absolute_value": 0.00014196880511008203,
+          "cosine_similarity": 0.9999999999988053,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.query.2.weight",
+          "shape": [
+            32,
+            64
+          ],
+          "maximum_absolute_error": 4.3655745685100555e-10,
+          "mean_absolute_error": 3.7251644585852006e-11,
+          "relative_l2_error": 1.205855347695586e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00029998208628967404,
+          "tensionforge_gradient_maximum_absolute_value": 0.00029998220270499587,
+          "cosine_similarity": 0.9999999999993261,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.query.2.bias",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 5.820766091346741e-10,
+          "mean_absolute_error": 2.6852831069845706e-10,
+          "relative_l2_error": 1.6182876560774556e-06,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.00041434081504121423,
+          "tensionforge_gradient_maximum_absolute_value": 0.0004143413680139929,
+          "cosine_similarity": 0.9999999999992814,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.output.0.weight",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 1.862645149230957e-08,
+          "mean_absolute_error": 5.5060809245333076e-09,
+          "relative_l2_error": 5.686084483491107e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.031217854470014572,
+          "tensionforge_gradient_maximum_absolute_value": 0.031217847019433975,
+          "cosine_similarity": 0.9999999999998567,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.output.0.bias",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 1.30385160446167e-08,
+          "mean_absolute_error": 4.2018655221909285e-09,
+          "relative_l2_error": 4.2441518933155813e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.03466339781880379,
+          "tensionforge_gradient_maximum_absolute_value": 0.034663405269384384,
+          "cosine_similarity": 0.9999999999999233,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.output.1.weight",
+          "shape": [
+            64,
+            32
+          ],
+          "maximum_absolute_error": 4.470348358154297e-08,
+          "mean_absolute_error": 3.99077981771967e-09,
+          "relative_l2_error": 3.856627805075365e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.12335474789142609,
+          "tensionforge_gradient_maximum_absolute_value": 0.12335474789142609,
+          "cosine_similarity": 0.9999999999999286,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.output.1.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-08,
+          "mean_absolute_error": 3.7760372606499004e-09,
+          "relative_l2_error": 3.2284802980859973e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.06521022319793701,
+          "tensionforge_gradient_maximum_absolute_value": 0.0652102380990982,
+          "cosine_similarity": 0.9999999999999499,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.output.3.weight",
+          "shape": [
+            64,
+            64
+          ],
+          "maximum_absolute_error": 2.60770320892334e-08,
+          "mean_absolute_error": 3.1460510863112745e-09,
+          "relative_l2_error": 2.893728323501141e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.09599977731704712,
+          "tensionforge_gradient_maximum_absolute_value": 0.09599977731704712,
+          "cosine_similarity": 0.9999999999999591,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "workspace.readout.output.3.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 2.3355823941528797e-09,
+          "relative_l2_error": 7.337280426309354e-08,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.10473108291625977,
+          "tensionforge_gradient_maximum_absolute_value": 0.10473108291625977,
+          "cosine_similarity": 0.9999999999999973,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "head.weight",
+          "shape": [
+            16,
+            64
+          ],
+          "maximum_absolute_error": 1.1920928955078125e-07,
+          "mean_absolute_error": 5.207242637084164e-09,
+          "relative_l2_error": 3.106104585339864e-07,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.23053009808063507,
+          "tensionforge_gradient_maximum_absolute_value": 0.23052997887134552,
+          "cosine_similarity": 0.9999999999999518,
+          "both_exactly_zero": false
+        },
+        {
+          "parameter_name": "head.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-08,
+          "mean_absolute_error": 4.423782229423523e-09,
+          "relative_l2_error": 3.687509011731655e-08,
+          "passed": true,
+          "pytorch_gradient_maximum_absolute_value": 0.4527663588523865,
+          "tensionforge_gradient_maximum_absolute_value": 0.4527663588523865,
+          "cosine_similarity": 0.9999999999999993,
+          "both_exactly_zero": false
+        }
+      ],
+      "aggregate_gradient_metrics": {
+        "worst_maximum_absolute_error": 1.1920928955078125e-07,
+        "worst_relative_l2_error_non_negligible": 8.646557549245347e-06,
+        "lowest_cosine_similarity_non_negligible": 0.9999999999988053,
+        "matched_parameters": 37,
+        "failed_parameters": 0
+      },
+      "updated_parameter_metrics": [
+        {
+          "parameter_name": "embedding.weight",
+          "shape": [
+            16,
+            32
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.initial_workspace",
+          "shape": [
+            32,
+            32
+          ],
+          "maximum_absolute_error": 3.725290298461914e-09,
+          "mean_absolute_error": 4.214939508528914e-11,
+          "relative_l2_error": 1.2295446721244118e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.slot_keys",
+          "shape": [
+            32,
+            16
+          ],
+          "maximum_absolute_error": 3.725290298461914e-09,
+          "mean_absolute_error": 2.6545876607997343e-11,
+          "relative_l2_error": 1.144305253216283e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.summary_norm.weight",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.summary_norm.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 8.731149137020111e-11,
+          "mean_absolute_error": 3.1377567211166024e-11,
+          "relative_l2_error": 1.3004487473119438e-07,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.router.query_network.0.weight",
+          "shape": [
+            16,
+            96
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 1.702176177786896e-10,
+          "relative_l2_error": 1.6063018910145867e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.router.query_network.0.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 5.820766091346741e-11,
+          "mean_absolute_error": 3.637978807091713e-12,
+          "relative_l2_error": 2.3330870038597255e-10,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.router.query_network.1.weight",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.router.query_network.1.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 1.6007106751203537e-10,
+          "mean_absolute_error": 4.001776687800884e-11,
+          "relative_l2_error": 2.1891221979346766e-07,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.router.query_network.3.weight",
+          "shape": [
+            16,
+            16
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-08,
+          "mean_absolute_error": 1.7189449863508344e-10,
+          "relative_l2_error": 8.352349231348641e-09,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.router.query_network.3.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.network.0.weight",
+          "shape": [
+            152
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.network.0.bias",
+          "shape": [
+            152
+          ],
+          "maximum_absolute_error": 1.1641532182693481e-10,
+          "mean_absolute_error": 3.140150128226531e-11,
+          "relative_l2_error": 1.283394977786408e-07,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.network.1.weight",
+          "shape": [
+            64,
+            152
+          ],
+          "maximum_absolute_error": 1.210719347000122e-08,
+          "mean_absolute_error": 3.780087354243733e-11,
+          "relative_l2_error": 7.914960295667617e-09,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.network.1.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 2.3283064365386963e-10,
+          "mean_absolute_error": 7.73070496506989e-12,
+          "relative_l2_error": 8.687568153699277e-10,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.network.3.weight",
+          "shape": [
+            32,
+            64
+          ],
+          "maximum_absolute_error": 3.725290298461914e-09,
+          "mean_absolute_error": 1.77209358298569e-11,
+          "relative_l2_error": 2.8826321135558676e-09,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.proposal.network.3.bias",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.microstep_embedding.weight",
+          "shape": [
+            4,
+            8
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.network.0.weight",
+          "shape": [
+            186
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.network.0.bias",
+          "shape": [
+            186
+          ],
+          "maximum_absolute_error": 8.667120710015297e-08,
+          "mean_absolute_error": 6.363724648792257e-10,
+          "relative_l2_error": 2.2066615231533055e-05,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.network.1.weight",
+          "shape": [
+            64,
+            186
+          ],
+          "maximum_absolute_error": 9.685754776000977e-08,
+          "mean_absolute_error": 1.0577521176748378e-10,
+          "relative_l2_error": 3.7798636845002586e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.network.1.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 3.725290298461914e-09,
+          "mean_absolute_error": 1.4551915228366852e-10,
+          "relative_l2_error": 1.6328634853377696e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.network.3.weight",
+          "shape": [
+            1,
+            64
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.tension.network.3.bias",
+          "shape": [
+            1
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.query.0.weight",
+          "shape": [
+            64,
+            96
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-07,
+          "mean_absolute_error": 1.9136810654648192e-10,
+          "relative_l2_error": 4.9812046395168615e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.query.0.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.query.2.weight",
+          "shape": [
+            32,
+            64
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-07,
+          "mean_absolute_error": 3.0968294595368207e-10,
+          "relative_l2_error": 7.017796949199342e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.query.2.bias",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 2.346496330574155e-10,
+          "relative_l2_error": 1.6530170252606124e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.output.0.weight",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.output.0.bias",
+          "shape": [
+            32
+          ],
+          "maximum_absolute_error": 5.820766091346741e-11,
+          "mean_absolute_error": 2.3646862246096134e-11,
+          "relative_l2_error": 9.393569125866841e-08,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.output.1.weight",
+          "shape": [
+            64,
+            32
+          ],
+          "maximum_absolute_error": 1.4901161193847656e-08,
+          "mean_absolute_error": 4.693845312431222e-11,
+          "relative_l2_error": 6.38936360835468e-09,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.output.1.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.output.3.weight",
+          "shape": [
+            64,
+            64
+          ],
+          "maximum_absolute_error": 7.450580596923828e-09,
+          "mean_absolute_error": 2.3725021947029745e-11,
+          "relative_l2_error": 4.505652681804797e-09,
+          "passed": true
+        },
+        {
+          "parameter_name": "workspace.readout.output.3.bias",
+          "shape": [
+            64
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        },
+        {
+          "parameter_name": "head.weight",
+          "shape": [
+            16,
+            64
+          ],
+          "maximum_absolute_error": 3.725290298461914e-09,
+          "mean_absolute_error": 1.887201506178826e-11,
+          "relative_l2_error": 3.037012632492778e-09,
+          "passed": true
+        },
+        {
+          "parameter_name": "head.bias",
+          "shape": [
+            16
+          ],
+          "maximum_absolute_error": 0.0,
+          "mean_absolute_error": 0.0,
+          "relative_l2_error": 0.0,
+          "passed": true
+        }
+      ],
+      "aggregate_updated_parameter_metrics": {
+        "worst_maximum_absolute_error": 1.4901161193847656e-07,
+        "worst_relative_l2_error_non_negligible": 2.2066615231533055e-05,
+        "lowest_cosine_similarity_non_negligible": 1.0,
+        "matched_parameters": 37,
+        "failed_parameters": 0
+      },
+      "passed": true
+    }
+  },
+  "only_one_optimizer_step_performed": true,
+  "long_training_or_performance_benchmark_performed": false,
+  "passed": true
+}

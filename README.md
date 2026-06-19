@@ -235,3 +235,15 @@ Run the audit experiment with:
     .venv/bin/python experiments/ten_son_forward_parity.py
 
 The next milestone is delayed-recall training parity. Bridge v0 performs no training or backward pass.
+
+## Ten-SON Training Bridge v1
+
+Bridge v0 established forward parity. Bridge v1 adds deterministic device-resident backward propagation through the workspace, recurrent sequence, token embedding, masked classifier loss, global gradient clipping, and one AdamW update.
+
+The one-token and four-token controlled objectives match gradients for the trainable initial workspace, slot keys, summary normalization, router, proposal, tension, and readout groups, as well as supplied token embeddings. The real delayed-recall case additionally matches the embedding table and output classifier. Across Cases A, B, and C, the measured worst gradient maximum absolute error is `1.14440918e-05`, the worst non-negligible relative L2 error is `1.77889384e-05`, and the lowest non-negligible cosine similarity is `0.999999999846`. The single clipped AdamW update has a worst parameter maximum absolute error of `1.49011612e-07`.
+
+Run the complete parity experiment with the required Rusticl driver selection:
+
+    RUSTICL_ENABLE=radeonsi .venv/bin/python experiments/ten_son_training_step_parity.py
+
+This result covers exactly one optimiser step; it is not long-run training parity. The next milestone is a short matched loss trajectory followed by CPU versus RX 480 timing.
