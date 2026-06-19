@@ -14,7 +14,15 @@ from .linear_backward import (
     linear_backward_device,
 )
 from .linear_device import linear_device
+from .losses import (
+    MSE_SOURCE,
+    mse_loss_grad_device,
+)
 from .matmul import MATMUL_SOURCE, matmul
+from .optimizer import (
+    ADAMW_SOURCE,
+    adamw_update_device,
+)
 from .tension import (
     TENSION_UPDATE_SOURCE,
     tension_update_device,
@@ -22,17 +30,21 @@ from .tension import (
 
 __all__ = [
     "ACTIVATION_SOURCE",
+    "ADAMW_SOURCE",
     "FUSED_TENSION_LINEAR_SOURCE",
     "LINEAR_BACKWARD_SOURCE",
     "LINEAR_SOURCE",
     "MATMUL_SOURCE",
+    "MSE_SOURCE",
     "SAXPY_SOURCE",
     "TENSION_UPDATE_SOURCE",
+    "adamw_update_device",
     "fused_tension_linear_device",
     "linear",
     "linear_backward_device",
     "linear_device",
     "matmul",
+    "mse_loss_grad_device",
     "saxpy",
     "sigmoid_device",
     "tanh_device",

@@ -1,0 +1,166 @@
+{
+  "configuration": {
+    "batch_size": 4096,
+    "input_features": 64,
+    "learning_rate": 0.03,
+    "output_features": 32,
+    "parameter_count": 2080,
+    "precision": "float32",
+    "training_steps": 300,
+    "validation_size": 1024
+  },
+  "created_at_utc": "2026-06-19T15:05:37.641598+00:00",
+  "device": {
+    "compute_units": 36,
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303,
+    "opencl_version": "OpenCL 3.0 ",
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org"
+  },
+  "last_operation_metrics": {
+    "backward": {
+      "approximate_matmul_gflops": 10.57938758008374,
+      "buffers_reused": {
+        "grad_bias": true,
+        "grad_input": true,
+        "grad_weights": true
+      },
+      "combined_median_ms": 3.17168,
+      "compile_options": [
+        "-DTILE_SIZE=16"
+      ],
+      "grad_bias_median_ms": 2.61984,
+      "grad_bias_shape": [
+        32
+      ],
+      "grad_input_median_ms": 0.043039999999999995,
+      "grad_input_shape": [
+        4096,
+        64
+      ],
+      "grad_output_shape": [
+        4096,
+        32
+      ],
+      "grad_weights_median_ms": 0.5088,
+      "grad_weights_shape": [
+        64,
+        32
+      ],
+      "host_transfers_during_repetitions": 0,
+      "input_shape": [
+        4096,
+        64
+      ],
+      "kernel_launches_per_backward": 3,
+      "operation": "linear_backward_device_fp32",
+      "repetitions": 1,
+      "source_sha256": "897ca98c3af7d3fdc27af1e576d9d4ffe0d403998168aacf6ee3fe39105f2ee0",
+      "tile_size": 16,
+      "weight_shape": [
+        64,
+        32
+      ]
+    },
+    "bias_update": {
+      "beta1": 0.9,
+      "beta2": 0.999,
+      "element_count": 32,
+      "epsilon": 1e-08,
+      "host_transfers": 0,
+      "kernel_ms": 0.0063999999999999994,
+      "learning_rate": 0.03,
+      "operation": "adamw_update_device_fp32",
+      "shape": [
+        32
+      ],
+      "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+      "step": 300,
+      "weight_decay": 0.0
+    },
+    "forward": {
+      "bias_shape": [
+        32
+      ],
+      "compile_options": [
+        "-DTILE_SIZE=16"
+      ],
+      "gflops": 323.1706422018348,
+      "host_transfers_during_repetitions": 0,
+      "input_shape": [
+        4096,
+        64
+      ],
+      "median_kernel_ms": 0.05232,
+      "operation": "linear_forward_device_fp32",
+      "output_buffer_reused": true,
+      "output_shape": [
+        4096,
+        32
+      ],
+      "repetitions": 1,
+      "source_sha256": "54fa4caa96bca4b8f968aeb3e2ef5428fcc27898f7c487d3e9ff520c54034689",
+      "tile_size": 16,
+      "weight_shape": [
+        64,
+        32
+      ]
+    },
+    "loss": {
+      "approximate_bandwidth_gbps": 39.9609756097561,
+      "buffers_reused": {
+        "grad_prediction": true,
+        "loss_terms": true
+      },
+      "element_count": 131072,
+      "host_transfers_during_repetitions": 0,
+      "median_kernel_ms": 0.05248,
+      "operation": "mse_loss_grad_device_fp32",
+      "repetitions": 1,
+      "shape": [
+        4096,
+        32
+      ],
+      "source_sha256": "36c8b1d2b8fb696dec877103dd4f99daf89175071bbeb9897f7e885dad3c998c"
+    },
+    "weight_update": {
+      "beta1": 0.9,
+      "beta2": 0.999,
+      "element_count": 2048,
+      "epsilon": 1e-08,
+      "host_transfers": 0,
+      "kernel_ms": 0.0072,
+      "learning_rate": 0.03,
+      "operation": "adamw_update_device_fp32",
+      "shape": [
+        64,
+        32
+      ],
+      "source_sha256": "0f12e54572250d31994016bb4f89614c56e24a1ccdfaba84fb91a069a89c31ad",
+      "step": 300,
+      "weight_decay": 0.0
+    }
+  },
+  "milestone": "composable_device_resident_training",
+  "passed": true,
+  "runtime": {
+    "kernel_cache_entries": 6,
+    "program_cache_entries": 4
+  },
+  "schema": "tensionforge.receipt.v1",
+  "training": {
+    "bias_max_error": 6.891787052154541e-08,
+    "final_loss": 1.40603312852973e-13,
+    "initial_loss": 4.026289414585495,
+    "loss_reduction_factor": 28635807598614.21,
+    "steps_per_second": 80.62862186743052,
+    "training_seconds": 3.7207630869997956,
+    "validation_loss": 1.425177253281944e-13,
+    "weight_max_error": 1.7881393432617188e-07
+  }
+}

@@ -168,3 +168,20 @@ Inputs, upstream gradients, parameter gradients, and optional reusable output
 buffers remain in GPU memory. NumPy references verify all three gradients, and
 receipts record individual kernel timings, combined throughput, source hashes,
 buffer reuse, and numerical error.
+
+## Composable device-resident training
+
+TensionForge includes reusable device-resident mean-squared-error gradients and
+an AdamW parameter update.
+
+A complete training step can now be assembled from public runtime operations:
+
+    prediction = linear(inputs, weights, bias)
+    loss, grad_prediction = mse(prediction, target)
+    grad_input, grad_weights, grad_bias = linear_backward(...)
+    adamw(weights, grad_weights)
+    adamw(bias, grad_bias)
+
+Parameters, optimiser moments, activations, losses, and gradients remain in GPU
+memory during training. Host transfers are only required when reading selected
+metrics or verification results.
