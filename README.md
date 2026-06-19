@@ -93,3 +93,16 @@ The operation now provides:
 - profiling and calculated GFLOPS;
 - NumPy parity tests;
 - deterministic benchmark receipts.
+
+## Fused linear forward operation
+
+TensionForge provides a reusable fused FP32 linear operation:
+
+    output = input @ weights + bias
+
+Matrix multiplication and bias addition execute in one OpenCL kernel. This
+reduces kernel launches and avoids a separate bias-addition pass.
+
+The operation supports arbitrary batch, input-feature, and output-feature
+dimensions, with NumPy parity tests, kernel profiling, compiled-kernel caching,
+and deterministic benchmark receipts.
