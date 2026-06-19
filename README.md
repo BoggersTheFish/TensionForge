@@ -224,3 +224,14 @@ updates all parameters with device-resident AdamW.
 
 A delayed-recall experiment verifies predictions and gradients against NumPy.
 No experiment-specific monolithic training kernel is used.
+# Ten-SON Bridge v0
+
+TensionForge now has a forward-only bridge for the PyTorch Ten-SON `TensionWorkspace.forward_token` path. Token embeddings are supplied directly; tokenizer, vocabulary lookup, training, backward propagation, and generation are not ported.
+
+The bridge keeps forward intermediates on the OpenCL device and matches workspace summaries, routing scores and probabilities, exact non-tied top-k indices, selected states, proposals, pre/post-update tension, updated and scattered workspaces, slot tension, readout weights, and the workspace-derived readout vector. The deterministic four-token parity run measured maximum absolute errors of `4.76837158e-07` for the development configuration and `6.55651093e-07` for the official CPU-validation dimensions. Both selected-index traces matched exactly; the final recurrent workspace errors were `7.4505806e-08` and `1.1920929e-07`, respectively, under `rtol=5e-4` and `atol=5e-4`.
+
+Run the audit experiment with:
+
+    .venv/bin/python experiments/ten_son_forward_parity.py
+
+The next milestone is delayed-recall training parity. Bridge v0 performs no training or backward pass.

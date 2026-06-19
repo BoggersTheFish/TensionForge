@@ -1,0 +1,380 @@
+{
+  "schema_version": "ten_son_forward_parity_v0",
+  "ten_son_source_commit_sha": "b4976f6e5846d0df498f6ee82c919b3215914415",
+  "tensionforge_commit_sha_before_work": "d63e21108b5d373ed4b0987c4d7a9365ca93cd2b",
+  "model_configurations": {
+    "development": {
+      "vocab_size": 8,
+      "output_size": 8,
+      "num_slots": 8,
+      "slot_dim": 8,
+      "embed_dim": 8,
+      "key_dim": 4,
+      "top_k": 3,
+      "microsteps": 2,
+      "max_microsteps": 4,
+      "proposal_hidden": 16,
+      "tension_hidden": 16,
+      "readout_hidden": 16,
+      "dropout": 0.0,
+      "adaptive_inference": false,
+      "tension_threshold": 0.15
+    },
+    "cpu_validation": {
+      "vocab_size": 16,
+      "output_size": 16,
+      "num_slots": 32,
+      "slot_dim": 32,
+      "embed_dim": 32,
+      "key_dim": 16,
+      "top_k": 6,
+      "microsteps": 2,
+      "max_microsteps": 4,
+      "proposal_hidden": 64,
+      "tension_hidden": 64,
+      "readout_hidden": 64,
+      "dropout": 0.0,
+      "adaptive_inference": false,
+      "tension_threshold": 0.15
+    }
+  },
+  "deterministic_seeds": {
+    "numpy": 4100,
+    "torch": 4101
+  },
+  "parameter_counts": {
+    "development": 3237,
+    "cpu_validation": 42789
+  },
+  "device_information": {
+    "platform_name": "rusticl",
+    "platform_vendor": "Mesa/X.org",
+    "device_name": "AMD Radeon (TM) RX 480 Graphics (radeonsi, polaris10, ACO, DRM 3.64, 6.17.0-35-generic)",
+    "device_vendor": "AMD",
+    "driver_version": "25.2.8-0ubuntu0.24.04.2",
+    "opencl_version": "OpenCL 3.0 ",
+    "compute_units": 36,
+    "global_memory_bytes": 8589934592,
+    "max_allocation_bytes": 2147483647,
+    "max_clock_mhz": 1303
+  },
+  "parity_errors": {
+    "development": {
+      "steps": [
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 1.1920928955078125e-07,
+          "routing_score_max_abs_error": 2.7939677238464355e-09,
+          "routing_probability_max_abs_error": 1.4901161193847656e-08,
+          "selected_score_max_abs_error": 2.7939677238464355e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            0.0,
+            8.940696716308594e-08
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            1.1920928955078125e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            7.450580596923828e-08
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            7.450580596923828e-08
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "slot_tension_max_abs_error": 5.960464477539063e-08,
+          "readout_weight_max_abs_error": 2.9802322387695312e-08,
+          "readout_vector_max_abs_error": 8.940696716308594e-08,
+          "maximum_abs_error": 1.1920928955078125e-07,
+          "passed": true
+        },
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 4.76837158203125e-07,
+          "routing_score_max_abs_error": 1.862645149230957e-09,
+          "routing_probability_max_abs_error": 2.2351741790771484e-08,
+          "selected_score_max_abs_error": 1.862645149230957e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            7.450580596923828e-08,
+            2.086162567138672e-07
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            2.384185791015625e-07,
+            1.1920928955078125e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            0.0
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            2.086162567138672e-07,
+            1.4901161193847656e-07
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            2.086162567138672e-07,
+            1.4901161193847656e-07
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            0.0,
+            2.9802322387695312e-08
+          ],
+          "slot_tension_max_abs_error": 0.0,
+          "readout_weight_max_abs_error": 1.4901161193847656e-08,
+          "readout_vector_max_abs_error": 1.1920928955078125e-07,
+          "maximum_abs_error": 4.76837158203125e-07,
+          "passed": true
+        },
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 4.76837158203125e-07,
+          "routing_score_max_abs_error": 2.561137080192566e-09,
+          "routing_probability_max_abs_error": 0.0,
+          "selected_score_max_abs_error": 1.862645149230957e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            1.4901161193847656e-07,
+            8.940696716308594e-08
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            1.7881393432617188e-07,
+            1.4901161193847656e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            6.51925802230835e-08
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            6.51925802230835e-08
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            2.9802322387695312e-08
+          ],
+          "slot_tension_max_abs_error": 5.960464477539063e-08,
+          "readout_weight_max_abs_error": 1.4901161193847656e-08,
+          "readout_vector_max_abs_error": 8.940696716308594e-08,
+          "maximum_abs_error": 4.76837158203125e-07,
+          "passed": true
+        },
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 2.8312206268310547e-07,
+          "routing_score_max_abs_error": 1.862645149230957e-09,
+          "routing_probability_max_abs_error": 1.4901161193847656e-08,
+          "selected_score_max_abs_error": 9.313225746154785e-10,
+          "selected_state_max_abs_error_per_microstep": [
+            6.51925802230835e-08,
+            8.940696716308594e-08
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            1.7881393432617188e-07,
+            1.1920928955078125e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            8.940696716308594e-08
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            7.450580596923828e-08
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            7.450580596923828e-08
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "slot_tension_max_abs_error": 8.940696716308594e-08,
+          "readout_weight_max_abs_error": 1.4901161193847656e-08,
+          "readout_vector_max_abs_error": 8.940696716308594e-08,
+          "maximum_abs_error": 2.8312206268310547e-07,
+          "passed": true
+        }
+      ],
+      "sequence_final_workspace_max_abs_error": 7.450580596923828e-08,
+      "selected_index_equality": true,
+      "maximum_abs_error": 4.76837158203125e-07,
+      "passed": true
+    },
+    "cpu_validation": {
+      "steps": [
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 2.384185791015625e-07,
+          "routing_score_max_abs_error": 5.587935447692871e-09,
+          "routing_probability_max_abs_error": 5.587935447692871e-09,
+          "selected_score_max_abs_error": 3.725290298461914e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            0.0,
+            1.1920928955078125e-07
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            2.384185791015625e-07,
+            1.9371509552001953e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            1.1920928955078125e-07,
+            1.1920928955078125e-07
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            1.1920928955078125e-07,
+            1.1920928955078125e-07
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            2.9802322387695312e-08,
+            8.940696716308594e-08
+          ],
+          "slot_tension_max_abs_error": 5.960464477539063e-08,
+          "readout_weight_max_abs_error": 7.450580596923828e-09,
+          "readout_vector_max_abs_error": 1.1920928955078125e-07,
+          "maximum_abs_error": 2.384185791015625e-07,
+          "passed": true
+        },
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 5.662441253662109e-07,
+          "routing_score_max_abs_error": 4.6566128730773926e-09,
+          "routing_probability_max_abs_error": 3.725290298461914e-09,
+          "selected_score_max_abs_error": 3.725290298461914e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            1.1920928955078125e-07,
+            1.341104507446289e-07
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            2.384185791015625e-07,
+            2.384185791015625e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            1.341104507446289e-07,
+            1.4901161193847656e-07
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            1.341104507446289e-07,
+            1.4901161193847656e-07
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "slot_tension_max_abs_error": 5.960464477539063e-08,
+          "readout_weight_max_abs_error": 5.587935447692871e-09,
+          "readout_vector_max_abs_error": 1.4901161193847656e-07,
+          "maximum_abs_error": 5.662441253662109e-07,
+          "passed": true
+        },
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 6.556510925292969e-07,
+          "routing_score_max_abs_error": 5.587935447692871e-09,
+          "routing_probability_max_abs_error": 3.725290298461914e-09,
+          "selected_score_max_abs_error": 3.725290298461914e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            1.4901161193847656e-07,
+            1.341104507446289e-07
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            2.384185791015625e-07,
+            2.384185791015625e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            5.960464477539063e-08
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            1.341104507446289e-07,
+            1.4901161193847656e-07
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            1.341104507446289e-07,
+            1.4901161193847656e-07
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            8.940696716308594e-08,
+            5.960464477539063e-08
+          ],
+          "slot_tension_max_abs_error": 5.960464477539063e-08,
+          "readout_weight_max_abs_error": 3.725290298461914e-09,
+          "readout_vector_max_abs_error": 1.7881393432617188e-07,
+          "maximum_abs_error": 6.556510925292969e-07,
+          "passed": true
+        },
+        {
+          "selected_index_equality": true,
+          "summary_max_abs_error": 2.384185791015625e-07,
+          "routing_score_max_abs_error": 5.587935447692871e-09,
+          "routing_probability_max_abs_error": 5.587935447692871e-09,
+          "selected_score_max_abs_error": 3.725290298461914e-09,
+          "selected_state_max_abs_error_per_microstep": [
+            1.4901161193847656e-07,
+            1.1175870895385742e-07
+          ],
+          "proposal_max_abs_error_per_microstep": [
+            2.384185791015625e-07,
+            2.086162567138672e-07
+          ],
+          "pre_tension_max_abs_error_per_microstep": [
+            5.960464477539063e-08,
+            1.1920928955078125e-07
+          ],
+          "updated_state_max_abs_error_per_microstep": [
+            1.1175870895385742e-07,
+            1.1920928955078125e-07
+          ],
+          "full_workspace_max_abs_error_per_microstep": [
+            1.1175870895385742e-07,
+            1.1920928955078125e-07
+          ],
+          "post_tension_max_abs_error_per_microstep": [
+            2.9802322387695312e-08,
+            5.960464477539063e-08
+          ],
+          "slot_tension_max_abs_error": 1.1920928955078125e-07,
+          "readout_weight_max_abs_error": 7.450580596923828e-09,
+          "readout_vector_max_abs_error": 1.862645149230957e-07,
+          "maximum_abs_error": 2.384185791015625e-07,
+          "passed": true
+        }
+      ],
+      "sequence_final_workspace_max_abs_error": 1.1920928955078125e-07,
+      "selected_index_equality": true,
+      "maximum_abs_error": 6.556510925292969e-07,
+      "passed": true
+    }
+  },
+  "selected_index_equality": true,
+  "sequence_length": 4,
+  "runtime_program_cache_size": 3,
+  "runtime_kernel_cache_size": 20,
+  "thresholds": {
+    "rtol": 0.0005,
+    "atol": 0.0005,
+    "selected_indices": "exact"
+  },
+  "passed": true,
+  "training_or_backward_performed": false,
+  "statement": "Forward parity only; no training or backward pass was performed.",
+  "torch_version": "2.11.0+cpu"
+}
