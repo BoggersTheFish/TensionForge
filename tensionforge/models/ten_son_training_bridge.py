@@ -9,8 +9,10 @@ import numpy as np
 from tensionforge.models.ten_son_bridge import LINEAR_WEIGHTS, TenSonBridgeConfig
 from tensionforge.ops import (
     add_device, add_tension_penalty_device, batched_dot_backward_device,
+    adamw_update_device,
     batched_dot_device, broadcast_rows_backward_device, broadcast_rows_device,
     broadcast_table_row_device, concatenate_backward_device, concatenate_columns_device,
+    clip_gradients_device,
     gather_backward_device, gather_slots_device, gelu_backward_device, gelu_device,
     embedding_backward_device, embedding_forward_device,
     layer_norm_backward_device, layer_norm_device, linear_backward_device, linear_device,
@@ -173,6 +175,8 @@ class TenSonTrainingBridge:
                 value = value.T
             self.parameters[name] = TrainingValue(DeviceTensor.from_numpy(runtime, np.ascontiguousarray(value)), name)
         self.tokens: list[TrainingValue] = []
+        self.first_moments: dict[str, DeviceTensor] = {}
+        self.second_moments: dict[str, DeviceTensor] = {}
 
     def p(self, name): return self.parameters[name]
     def view(self, x, shape): return self.program.reshape(x, shape)
@@ -188,6 +192,62 @@ class TenSonTrainingBridge:
     def initial_state(self, batch):
         parameter = self.p("initial_workspace")
         return self.view(self.program.broadcast(self.view(parameter, (1, parameter.tensor.size)), batch), (batch,) + parameter.tensor.shape)
+
+    def begin_step(self):
+        self.program = WorkspaceBackwardProgram(self.runtime)
+        self.tokens = []
+        for value in self.parameters.values():
+            value.grad = None
+
+    def initialize_optimizer_state(self):
+        self.first_moments = {
+            name: workspace_fill_device(self.runtime, value.tensor.shape)
+            for name, value in self.parameters.items()
+        }
+        self.second_moments = {
+            name: workspace_fill_device(self.runtime, value.tensor.shape)
+            for name, value in self.parameters.items()
+        }
+
+    def reset_training_state(self, parameters: Mapping[str, np.ndarray]):
+        for original, raw in parameters.items():
+            name = original.removeprefix("workspace.")
+            value = np.asarray(raw, dtype=np.float32)
+            if name in LINEAR_WEIGHTS or name == "head.weight":
+                value = value.T
+            self.parameters[name].tensor.copy_from(np.ascontiguousarray(value))
+        if not self.first_moments:
+            self.initialize_optimizer_state()
+        else:
+            for tensor in (*self.first_moments.values(), *self.second_moments.values()):
+                workspace_fill_device(self.runtime, tensor.shape, output=tensor)
+        self.begin_step()
+
+    def export_parameters(self):
+        return {name: value.tensor.to_numpy() for name, value in self.parameters.items()}
+
+    def export_optimizer_state(self):
+        return {
+            name: {"first_moment": self.first_moments[name].to_numpy(),
+                   "second_moment": self.second_moments[name].to_numpy()}
+            for name in self.parameters
+        }
+
+    def clip_gradients(self, max_norm=1.0):
+        return clip_gradients_device(self.runtime, self.gradients().values(), max_norm)
+
+    def optimizer_step(self, step, *, learning_rate=3e-4, beta1=.9, beta2=.999, epsilon=1e-8, weight_decay=.01):
+        if not self.first_moments:
+            self.initialize_optimizer_state()
+        for name, value in self.parameters.items():
+            if value.grad is None:
+                continue
+            adamw_update_device(
+                self.runtime, value.tensor, value.grad,
+                self.first_moments[name], self.second_moments[name], step=step,
+                learning_rate=learning_rate, beta1=beta1, beta2=beta2,
+                epsilon=epsilon, weight_decay=weight_decay,
+            )
 
     def embed(self, token_ids: DeviceTensor):
         return self.program.embedding(token_ids, self.p("embedding.weight"))

@@ -58,6 +58,10 @@ class TensionForgeRuntime:
             cl.Kernel,
         ] = {}
 
+        self.kernel_launch_count = 0
+        self.host_to_device_bytes = 0
+        self.device_to_host_bytes = 0
+
     @property
     def program_cache_size(self) -> int:
         return len(self._program_cache)
@@ -201,12 +205,14 @@ class TensionForgeRuntime:
                 f"{self.info.max_allocation_bytes} bytes"
             )
 
-        return cl.Buffer(
+        buffer = cl.Buffer(
             self.context,
             access_flags[access]
             | cl.mem_flags.COPY_HOST_PTR,
             hostbuf=contiguous,
         )
+        self.host_to_device_bytes += contiguous.nbytes
+        return buffer
 
     def empty_buffer(
         self,
@@ -258,6 +264,8 @@ class TensionForgeRuntime:
             source,
         ).wait()
 
+        self.device_to_host_bytes += destination.nbytes
+
         return destination
 
     def write_buffer(
@@ -272,6 +280,7 @@ class TensionForgeRuntime:
             destination,
             contiguous,
         ).wait()
+        self.host_to_device_bytes += contiguous.nbytes
 
     def run_kernel(
         self,
@@ -290,6 +299,8 @@ class TensionForgeRuntime:
             local_size,
         )
 
+        self.kernel_launch_count += 1
+
         event.wait()
 
         if not self.profiling:
@@ -304,3 +315,15 @@ class TensionForgeRuntime:
 
     def finish(self) -> None:
         self.queue.finish()
+
+    def counters(self) -> dict[str, int]:
+        return {
+            "kernel_launches": self.kernel_launch_count,
+            "host_to_device_bytes": self.host_to_device_bytes,
+            "device_to_host_bytes": self.device_to_host_bytes,
+        }
+
+    def reset_counters(self) -> None:
+        self.kernel_launch_count = 0
+        self.host_to_device_bytes = 0
+        self.device_to_host_bytes = 0

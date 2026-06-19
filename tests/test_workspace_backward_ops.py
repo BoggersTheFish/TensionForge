@@ -9,6 +9,7 @@ from tensionforge.ops import (
     gather_backward_device, gelu_backward_device, layer_norm_backward_device,
     row_delta_norm_backward_device, scatter_backward_device, softmax_backward_device,
     tension_penalty_backward_device, tension_update_broadcast_backward_device,
+    training_auxiliary_loss_device,
     weighted_sum_backward_device, workspace_reduce_backward_device,
 )
 from tensionforge.runtime import TensionForgeRuntime
@@ -74,3 +75,12 @@ def test_attention_cell_norm_embedding_and_loss_backward(runtime):
 def test_concatenate_backward(runtime):
     g=np.arange(30,dtype=np.float32).reshape(3,10);left,right=concatenate_backward_device(runtime,d(runtime,g),4)
     np.testing.assert_array_equal(left.to_numpy(),g[:,:4]);np.testing.assert_array_equal(right.to_numpy(),g[:,4:])
+
+
+def test_training_auxiliary_loss(runtime):
+    tensions=[d(runtime,np.array([[[.4],[.6]],[[.5],[.7]]],np.float32))]
+    indices=[d(runtime,np.array([[0,2],[2,3]],np.int32),np.int32)]
+    loss=training_auxiliary_loss_device(runtime,tensions,indices,4)
+    probabilities=np.array([.25,0,.5,.25],np.float32)
+    expected=.001*np.mean((probabilities-.25)**2)
+    np.testing.assert_allclose(loss.to_numpy()[0],expected,rtol=1e-6,atol=1e-9)

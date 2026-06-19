@@ -247,3 +247,13 @@ Run the complete parity experiment with the required Rusticl driver selection:
     RUSTICL_ENABLE=radeonsi .venv/bin/python experiments/ten_son_training_step_parity.py
 
 This result covers exactly one optimiser step; it is not long-run training parity. The next milestone is a short matched loss trajectory followed by CPU versus RX 480 timing.
+
+## Ten-SON Training Bridge v2
+
+Bridge v0 proved forward parity and v1 proved parameter-gradient and one-step AdamW parity. Bridge v2 extends the same implementation through 20 synchronized delayed-recall updates. All 21 pre/post-update rows passed, every selected-index trace matched, and the worst loss absolute error was `2.72365869e-07`. Checkpoint gradients, parameters, and AdamW first/second moments remained within their declared thresholds.
+
+The steady-state development benchmark ran 50 steps per repetition. PyTorch CPU required a median `1.870282` seconds (`37.406` ms/step), while TensionForge on the RX 480 required `31.083813` seconds (`621.676` ms/step), a `0.060x` speedup ratio. Cold start was `0.843197` seconds for CPU and `0.912691` seconds for TensionForge.
+
+The scientific-validation benchmark preserved the checked-in model dimensions, delayed-recall sequence length 20, and batch size 32, with 20 timed steps per repetition. PyTorch CPU required a median `2.589140` seconds (`129.457` ms/step), while TensionForge required `55.136640` seconds (`2756.832` ms/step), a `0.047x` ratio. Cold start was `0.151195` seconds for CPU and `2.403159` seconds for TensionForge.
+
+By the milestone interpretation rule, TensionForge is currently slower than CPU and is not yet practically faster. Steady-state timing excludes construction, OpenCL compilation, parameter conversion/reset, batch generation/upload, receipt creation, diagnostic readbacks, and assertions. Five warm-up steps preceded timing, parameters and optimizer state were reset before every repetition, and timed GPU loops recorded zero host transfers. No kernel or runtime performance optimization was performed in v2.

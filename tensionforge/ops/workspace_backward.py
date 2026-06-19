@@ -83,6 +83,22 @@ __kernel void route_backward_q_fp32(__global const float*k,__global const float*
 __kernel void route_backward_k_fp32(__global const float*q,__global const float*g,__global float*gk,
  const uint b,const uint n,const uint f,const float scale){uint i=get_global_id(0);if(i>=n*f)return;uint s=i/f,j=i%f;float z=0;
  for(uint bb=0;bb<b;bb++)z+=g[bb*n+s]*q[bb*f+j];gk[i]=z*scale;}
+__kernel void sum_squares_at_fp32(__global const float*x,__global float*parts,const uint slot,const uint n){
+ if(get_global_id(0)==0){float s=0;for(uint i=0;i<n;i++)s+=x[i]*x[i];parts[slot]=s;}}
+__kernel void finish_global_norm_fp32(__global const float*parts,__global float*norm,const uint count){
+ if(get_global_id(0)==0){float s=0;for(uint i=0;i<count;i++)s+=parts[i];norm[0]=sqrt(s);}}
+__kernel void clip_from_parts_fp32(__global float*x,__global const float*parts,const uint count,const float max_norm,const uint n){
+ uint i=get_global_id(0);if(i>=n)return;float s=0;for(uint j=0;j<count;j++)s+=parts[j];float norm=sqrt(s);
+ float scale=norm>max_norm?max_norm/(norm+1.0e-6f):1.0f;x[i]*=scale;}
+__kernel void accumulate_sum_fp32(__global const float*x,__global float*sum,const uint n){
+ if(get_global_id(0)==0){float value=0;for(uint i=0;i<n;i++)value+=x[i];sum[0]+=value;}}
+__kernel void accumulate_index_counts_fp32(__global const int*indices,__global float*counts,const uint n,const uint slots){
+ uint slot=get_global_id(0);if(slot>=slots)return;float value=0;for(uint i=0;i<n;i++)if((uint)indices[i]==slot)value+=1.0f;counts[slot]+=value;}
+__kernel void auxiliary_loss_fp32(__global const float*sum,__global const float*counts,__global float*loss,
+ const uint tension_count,const uint index_count,const uint slots,const float tension_weight,const float usage_weight){
+ if(get_global_id(0)==0){float mean=sum[0]/tension_count;float balance=fmax(0.05f-mean,0.0f)+fmax(mean-0.95f,0.0f);float usage=0;
+ for(uint i=0;i<slots;i++){float p=counts[i]/index_count;float d=p-1.0f/slots;usage+=d*d;}usage/=slots;
+ loss[0]=tension_weight*balance+usage_weight*usage;}}
 """
 
 
@@ -204,3 +220,32 @@ def route_scores_backward_device(runtime, query, keys, grad, scale):
     b,f=query.shape;n=keys.shape[0];gq=_out(runtime,query.shape);gk=_out(runtime,keys.shape)
     _run(runtime,"route_backward_q_fp32",gq.size,(keys.buffer,grad.buffer,gq.buffer,np.uint32(b),np.uint32(n),np.uint32(f),np.float32(scale)))
     _run(runtime,"route_backward_k_fp32",gk.size,(query.buffer,grad.buffer,gk.buffer,np.uint32(b),np.uint32(n),np.uint32(f),np.float32(scale)));return gq,gk
+
+
+def clip_gradients_device(runtime, gradients, max_norm=1.0):
+    gradients=[gradient for gradient in gradients if gradient is not None]
+    if not gradients: raise ValueError("at least one gradient is required")
+    if max_norm <= 0: raise ValueError("max_norm must be positive")
+    for gradient in gradients: _check(runtime,gradient,"gradient")
+    parts=_out(runtime,(len(gradients),));norm=_out(runtime,(1,))
+    for index,gradient in enumerate(gradients):
+        _run(runtime,"sum_squares_at_fp32",1,(gradient.buffer,parts.buffer,np.uint32(index),np.uint32(gradient.size)))
+    _run(runtime,"finish_global_norm_fp32",1,(parts.buffer,norm.buffer,np.uint32(len(gradients))))
+    for gradient in gradients:
+        _run(runtime,"clip_from_parts_fp32",gradient.size,(gradient.buffer,parts.buffer,np.uint32(len(gradients)),np.float32(max_norm),np.uint32(gradient.size)))
+    return norm
+
+
+def training_auxiliary_loss_device(runtime, pre_tensions, selected_indices, num_slots, tension_weight=.001, usage_weight=.001):
+    pre_tensions=list(pre_tensions);selected_indices=list(selected_indices)
+    if not pre_tensions or not selected_indices: raise ValueError("diagnostic tensors are required")
+    total=fill_device(runtime,(1,));counts=fill_device(runtime,(num_slots,));loss=fill_device(runtime,(1,))
+    tension_count=0;index_count=0
+    for tensor in pre_tensions:
+        _check(runtime,tensor,"pre_tension");tension_count+=tensor.size
+        _run(runtime,"accumulate_sum_fp32",1,(tensor.buffer,total.buffer,np.uint32(tensor.size)))
+    for tensor in selected_indices:
+        _check(runtime,tensor,"selected_indices",np.int32);index_count+=tensor.size
+        _run(runtime,"accumulate_index_counts_fp32",num_slots,(tensor.buffer,counts.buffer,np.uint32(tensor.size),np.uint32(num_slots)))
+    _run(runtime,"auxiliary_loss_fp32",1,(total.buffer,counts.buffer,loss.buffer,np.uint32(tension_count),np.uint32(index_count),np.uint32(num_slots),np.float32(tension_weight),np.float32(usage_weight)))
+    return loss
